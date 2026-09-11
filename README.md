@@ -1,6 +1,6 @@
 # 💰 SaveBucks - Cancel Subscriptions & Save Money
 
-Live Demo: https://savebucks.vercel.app
+Live Demo: https://savebucks-vercel-deploy.vercel.app
 
 SaveBucks helps users find and cancel unused subscriptions in 1 click. 
 Free: 5 subscriptions tracked. Pro: Unlimited + Cancel-For-You service.
