@@ -22,6 +22,7 @@ export async function POST(req) {
     return new Response('Error', { status: 500 });
   }
 }
+
 export async function GET() {
   return new Response('SaveBucks Webhook is Live! ✅', { status: 200 });
 }
