@@ -6,16 +6,15 @@ SaveBucks helps users find and cancel unused subscriptions in 1 click.
 Free: 5 subscriptions tracked. Pro: Unlimited + Cancel-For-You service.
 
 ## Features
-- ✅ Subscription Tracker (5 free, unlimited Pro)
-- ✅ Cancel-For-You Service ($7.99)
-- ✅ Savings Dashboard
-- ✅ Home, Services, About, Comments, FAQ, Terms
+- ✅ Subscription Tracker (Auto Gmail Scan)
+- ✅ One-Click Cancel Reminders
+- ✅ Savings Dashboard - See how much you saved
+- ✅ Privacy First - No data leaves your browser
 
 ## Pricing
-- Free: $0 (5 subscriptions)
-- Pro Monthly: $4.99/mo
-- Pro Yearly: $29.99/year (Save 50%)
-- Cancel-For-You: $7.99 one-time
+- Free: $0 (Scan 3 subscriptions)
+- Pro: $19 Lifetime (Unlimited scans, unlimited saves) - Best Value!
+- Cancel-For-You: $7.99 one-time add-on
 
 ## Tech Stack
 - HTML5, Tailwind CSS, React (single file)
