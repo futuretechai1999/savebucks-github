@@ -1,6 +1,6 @@
 # 💰 SaveBucks - Cancel Subscriptions & Save Money
 
-Live Demo: https://savebucks-vercel-deploy.vercel.app
+Live Demo: https://www.savebuckss.site
 
 SaveBucks helps users find and cancel unused subscriptions in 1 click. 
 Free: 5 subscriptions tracked. Pro: Unlimited + Cancel-For-You service.
@@ -19,10 +19,10 @@ Free: 5 subscriptions tracked. Pro: Unlimited + Cancel-For-You service.
 ## Tech Stack
 - HTML5, Tailwind CSS, React (single file)
 - Deployed on Vercel
-- Payments: LemonSqueezy (coming soon)
+- Payments: LemonSqueezy (Live)
 
 ## Contact
 Email: futuretechai1999@gmail.com
 
-## Deploy Your Own
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/savebucks)
+## Deploy Your Own)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/futuretechai1999/savebucks-github)
