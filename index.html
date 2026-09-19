@@ -8,39 +8,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    .bg-grid {
-      background-image: radial-gradient(rgba(217, 70, 239, 0.12) 1px, transparent 1px);
-      background-size: 24px 24px;
-    }
   </style>
 </head>
 <body class="bg-[#fbfafd] text-zinc-900 transition-colors duration-200">
 
-  <!-- TOP NAVBAR -->
-  <nav class="sticky top-0 z-50 bg-[#fbfafd]/90 backdrop-blur-md border-b border-zinc-200/80 px-4 sm:px-8 py-3.5">
+  <!-- 1. STICKY TOP NAVBAR WITH PROPER SAVEBUCKS LOGO -->
+  <nav class="sticky top-0 z-50 bg-[#fbfafd]/95 backdrop-blur-md border-b border-zinc-200/80 px-4 sm:px-8 py-3.5">
     <div class="max-w-4xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <!-- Shield Icon with S & Scissors / Gradient Mark -->
-        <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-violet-600 via-fuchsia-500 to-amber-500 flex items-center justify-center text-white font-black text-base shadow-md shadow-fuchsia-500/20">
-          S
+      <a href="#" class="flex items-center gap-2.5">
+        <!-- SVG Shield with 'S' Cut Graphic Logo -->
+        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-violet-600 via-fuchsia-600 to-amber-500 flex items-center justify-center shadow-md shadow-fuchsia-500/20 text-white font-black text-lg">
+          <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 8.5c0-.8.7-1.5 1.5-1.5h3c.8 0 1.5.7 1.5 1.5 0 1.2-1.5 1.7-2.5 2s-2.5.8-2.5 2c0 .8.7 1.5 1.5 1.5h3c.8 0 1.5-.7 1.5-1.5"/>
+            <line x1="12" y1="5.5" x2="12" y2="7"/>
+            <line x1="12" y1="15" x2="12" y2="16.5"/>
+          </svg>
         </div>
-        <span class="text-xl font-bold tracking-tight text-zinc-900">SaveBucks</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <button id="themeToggle" class="p-2 rounded-full hover:bg-zinc-100 text-zinc-600 transition">
+        <span class="text-xl font-extrabold tracking-tight text-zinc-950">SaveBucks</span>
+      </a>
+      <div class="flex items-center gap-2">
+        <button id="themeToggle" class="p-2 rounded-full hover:bg-zinc-100 text-zinc-600">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
         </button>
-        <button class="p-2 rounded-lg hover:bg-zinc-100 text-zinc-700">
+        <a href="#dashboard" class="p-2 rounded-lg hover:bg-zinc-100 text-zinc-700">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
+        </a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
-  <section class="relative pt-8 pb-12 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-fuchsia-100/40 via-violet-50/30 to-transparent">
+  <!-- 2. HERO SECTION -->
+  <section class="pt-8 pb-10 px-4 sm:px-6 bg-gradient-to-b from-fuchsia-100/50 via-violet-50/20 to-transparent">
     <div class="max-w-3xl mx-auto text-left">
-      <!-- Live Badge -->
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white border border-fuchsia-200/80 shadow-sm text-zinc-800 mb-6">
         <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
         Live tracking for 64+ apps &bull; US users waste $1000/year
@@ -58,7 +58,7 @@
       </p>
 
       <div class="flex flex-col sm:flex-row gap-3.5 mb-10">
-        <a href="#dashboard" class="w-full sm:w-auto px-7 py-3.5 rounded-xl text-center font-bold text-sm text-white bg-gradient-to-r from-sky-400 via-fuchsia-500 to-fuchsia-600 hover:opacity-95 shadow-lg shadow-fuchsia-500/30 transition transform active:scale-[0.98]">
+        <a href="#dashboard" class="w-full sm:w-auto px-7 py-3.5 rounded-xl text-center font-bold text-sm text-white bg-gradient-to-r from-violet-600 via-fuchsia-600 to-fuchsia-500 hover:opacity-95 shadow-lg shadow-fuchsia-500/25 transition">
           Start Tracking Free &mdash; 3 Subs Free
         </a>
         <a href="#how-it-works" class="w-full sm:w-auto px-6 py-3.5 rounded-xl text-center font-semibold text-sm bg-white hover:bg-zinc-50 text-zinc-800 border border-zinc-200 shadow-sm transition">
@@ -67,7 +67,7 @@
       </div>
 
       <!-- Stats Bar -->
-      <div class="grid grid-cols-3 gap-3 p-4 sm:p-6 bg-white/80 backdrop-blur-md rounded-2xl border border-zinc-200/80 shadow-sm mb-4">
+      <div class="grid grid-cols-3 gap-3 p-4 sm:p-6 bg-white/80 backdrop-blur-md rounded-2xl border border-zinc-200/80 shadow-sm mb-3">
         <div>
           <h3 class="text-xl sm:text-2xl font-black text-zinc-900">$1200+</h3>
           <p class="text-xs text-zinc-500 font-medium mt-0.5">avg saved / yr</p>
@@ -85,8 +85,8 @@
     </div>
   </section>
 
-  <!-- QUICK "YOUR BURN" SUMMARY CARD -->
-  <section class="px-4 sm:px-6 py-6">
+  <!-- 3. QUICK "YOUR BURN" SUMMARY PREVIEW -->
+  <section class="px-4 sm:px-6 py-4">
     <div class="max-w-3xl mx-auto">
       <div class="p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-sm">
         <div class="flex items-center justify-between mb-4">
@@ -97,19 +97,18 @@
         <div class="grid grid-cols-3 gap-2 py-3 border-y border-zinc-100 mb-4 text-center">
           <div>
             <p class="text-xs text-zinc-400 font-medium">Monthly</p>
-            <h4 class="text-xl font-black text-zinc-900 mt-1">$130</h4>
+            <h4 class="text-xl font-black text-zinc-900 mt-1" id="previewMonthly">$130</h4>
           </div>
           <div>
             <p class="text-xs text-zinc-400 font-medium">Yearly Waste</p>
-            <h4 class="text-xl font-black text-zinc-900 mt-1">$1565</h4>
+            <h4 class="text-xl font-black text-zinc-900 mt-1" id="previewYearly">$1565</h4>
           </div>
           <div>
             <p class="text-xs text-zinc-400 font-medium">Active</p>
-            <h4 class="text-xl font-black text-zinc-900 mt-1">4</h4>
+            <h4 class="text-xl font-black text-zinc-900 mt-1" id="previewActive">4</h4>
           </div>
         </div>
 
-        <!-- Sample List -->
         <div class="space-y-3 mb-6 text-sm">
           <div class="flex items-center justify-between">
             <span class="font-medium text-zinc-800">Netflix</span>
@@ -132,7 +131,92 @@
     </div>
   </section>
 
-  <!-- EVERYTHING YOU NEED TO SAVE (FEATURES) -->
+  <!-- 4. DASHBOARD SECTION (AB UPPER POSITION MEIN) -->
+  <section id="dashboard" class="px-4 sm:px-6 py-10 bg-zinc-50/70 border-t border-b border-zinc-200">
+    <div class="max-w-3xl mx-auto">
+      
+      <!-- Dashboard Top Header -->
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">✨</span>
+          <h2 class="text-2xl font-black text-zinc-900">Dashboard</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="px-3.5 py-1.5 rounded-lg bg-sky-500 text-white font-bold text-xs shadow-sm hover:bg-sky-600 transition">
+            Upgrade Pro $4.99
+          </button>
+          <span class="text-xs font-bold px-2 py-1 bg-zinc-200 text-zinc-700 rounded-md" id="subCounterPill">4/5 subs</span>
+        </div>
+      </div>
+
+      <!-- Add Subscription Form Card -->
+      <div class="p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-sm mb-6">
+        <h3 class="text-base font-bold text-zinc-900 mb-1">Add Subscription</h3>
+        <p class="text-xs text-zinc-400 mb-4">Autocomplete from 64+ apps</p>
+
+        <form id="dashboardAddForm" onsubmit="addNewSubscription(event)" class="space-y-4">
+          <div>
+            <input type="text" id="appSearchInput" required placeholder="🔍 Netflix, Claude Pro, ReelShort..." class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Price</label>
+              <input type="number" step="0.01" id="appPriceInput" required placeholder="9.99" class="w-full mt-1 px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
+            </div>
+            <div>
+              <label class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Cycle</label>
+              <select id="appCycleSelect" class="w-full mt-1 px-3 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
+                <option value="Monthly">Monthly</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Yearly">Yearly</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 pt-1">
+            <input type="checkbox" id="appTrialCheckbox" class="rounded border-zinc-300 text-fuchsia-600 focus:ring-fuchsia-500 h-4 w-4">
+            <label for="appTrialCheckbox" class="text-xs font-medium text-zinc-600">Trial? (remind before charge)</label>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-fuchsia-600 to-violet-600 hover:opacity-95 shadow-lg shadow-fuchsia-500/25 transition">
+            &plus; Add (<span id="btnSubCount">4/5</span>)
+          </button>
+        </form>
+
+        <!-- Weekly Trap Warning Box -->
+        <div class="mt-5 p-4 rounded-xl bg-amber-50/90 border border-amber-200 text-xs text-amber-900 leading-relaxed">
+          <p class="font-bold flex items-center gap-1.5 text-amber-950 mb-1">
+            <span>⚠️</span> Weekly trap warning
+          </p>
+          ReelShort $14.99/week = $60/mo, MadMuscle $29.99/week = $120/mo. Deleting app &ne; cancel. Use our cancel DB.
+        </div>
+
+        <!-- Metric Counters -->
+        <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-zinc-100 text-center">
+          <div>
+            <h4 class="text-lg font-black text-zinc-900" id="dashMonthly">$130</h4>
+            <p class="text-[11px] text-zinc-400">Monthly burn</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-black text-zinc-900" id="dashYearly">$1565</h4>
+            <p class="text-[11px] text-zinc-400">Yearly waste</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-black text-zinc-900">65</h4>
+            <p class="text-[11px] text-zinc-400">Weekly trap $</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subscription Live Cards -->
+      <div id="subsList" class="space-y-3">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. EVERYTHING YOU NEED TO SAVE (FEATURES) -->
   <section id="how-it-works" class="px-4 sm:px-6 py-12">
     <div class="max-w-3xl mx-auto">
       <div class="text-left mb-8">
@@ -145,9 +229,7 @@
       <div class="space-y-4">
         <!-- Feature 1 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col gap-2">
-          <div class="h-10 w-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-lg">
-            🔍
-          </div>
+          <div class="h-10 w-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-lg">🔍</div>
           <h3 class="font-bold text-base text-zinc-900 mt-1">Auto-Detect Waste</h3>
           <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
             We map 64+ apps with real cancel paths. Short drama & fitness weekly traps flagged instantly.
@@ -157,9 +239,7 @@
 
         <!-- Feature 2 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col gap-2">
-          <div class="h-10 w-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg">
-            🚫
-          </div>
+          <div class="h-10 w-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg">🚫</div>
           <h3 class="font-bold text-base text-zinc-900 mt-1">1-Click Cancel Guides</h3>
           <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
             Step-by-step cancel DB: App Store &gt; Subscriptions path, support emails, hard vs easy difficulty.
@@ -169,9 +249,7 @@
 
         <!-- Feature 3 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col gap-2">
-          <div class="h-10 w-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
-            💰
-          </div>
+          <div class="h-10 w-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">💰</div>
           <h3 class="font-bold text-base text-zinc-900 mt-1">Switch & Save</h3>
           <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
             Affiliate alternatives: Adobe &rarr; Figma+Canva save $30, Claude &rarr; Perplexity, MadMuscle &rarr; Fitbod. Transparent commissions.
@@ -181,9 +259,7 @@
 
         <!-- Feature 4 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col gap-2">
-          <div class="h-10 w-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg">
-            ⏰
-          </div>
+          <div class="h-10 w-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg">⏰</div>
           <h3 class="font-bold text-base text-zinc-900 mt-1">Trial Alerts</h3>
           <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
             ICS + Google Calendar reminders. Never pay for forgotten trials again. Split costs via WhatsApp generator.
@@ -194,18 +270,18 @@
     </div>
   </section>
 
-  <!-- WHY WE BUILT SAVEBUCKS & BREAKDOWN TABLE -->
-  <section class="px-4 sm:px-6 py-10 bg-zinc-50 border-y border-zinc-200">
+  <!-- 6. WHY WE BUILT SAVEBUCKS & BREAKDOWN EXAMPLES -->
+  <section class="px-4 sm:px-6 py-10 bg-zinc-50 border-t border-b border-zinc-200">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-2xl sm:text-3xl font-black text-zinc-950 mb-3">Why We Built SaveBucks</h2>
       <p class="text-sm text-zinc-600 leading-relaxed mb-4">
         Average US user wastes $1000/year on forgotten subs. Short drama apps like ReelShort, DramaBox, GoodShort charge <span class="font-bold text-zinc-900">$14.99/week = $60/month</span> for 2-minute clips. Fitness traps like MadMuscle and JustFit: <span class="font-bold text-zinc-900">$29.99/week = $120/month</span> &mdash; and deleting the app doesn't cancel.
       </p>
       <p class="text-sm text-zinc-600 leading-relaxed mb-6">
-        Our mission: help you save $500+/year. Track 64+ apps, get exact cancel paths, switch to cheaper alternatives. Pro is $19 Lifetime, cancel-for-you $7.99 one-time. Monetization is transparent.
+        Our mission: help you save $500+/year. Track 64+ apps, get exact cancel paths, switch to cheaper alternatives. Pro is $19 Lifetime, cancel-for-you $7.99 one-time.
       </p>
 
-      <div class="p-4 rounded-xl bg-white border border-zinc-200 flex items-center justify-between mb-8">
+      <div class="p-4 rounded-xl bg-white border border-zinc-200 flex items-center justify-between mb-8 shadow-sm">
         <div>
           <p class="text-xs text-zinc-400">Contact:</p>
           <p class="text-xs font-semibold text-zinc-800">futuretechai1999@gmail.com</p>
@@ -215,7 +291,7 @@
         </a>
       </div>
 
-      <!-- Real Waste Breakdown Table -->
+      <!-- Breakdown Table -->
       <div class="bg-white rounded-2xl border border-zinc-200 p-5 shadow-sm">
         <div class="flex items-center gap-2 mb-4">
           <span class="text-lg">📉</span>
@@ -268,7 +344,7 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS SECTION -->
+  <!-- 7. WHAT USERS SAY (TESTIMONIALS) -->
   <section class="px-4 sm:px-6 py-12">
     <div class="max-w-3xl mx-auto">
       <div class="text-center mb-8">
@@ -277,7 +353,7 @@
       </div>
 
       <div class="space-y-4">
-        <!-- Review 1 -->
+        <!-- Card 1 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
           <span class="absolute top-4 right-4 text-xs font-black text-fuchsia-600 bg-fuchsia-50 px-2 py-0.5 rounded-full border border-fuchsia-200">$780/yr</span>
           <div class="text-amber-400 text-sm mb-2">★★★★★</div>
@@ -285,7 +361,7 @@
           <p class="text-xs text-zinc-400 mt-3 font-medium">Jessica T., Austin &bull; DramaBox</p>
         </div>
 
-        <!-- Review 2 -->
+        <!-- Card 2 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
           <span class="absolute top-4 right-4 text-xs font-black text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-200">$1,440/yr</span>
           <div class="text-amber-400 text-sm mb-2">★★★★★</div>
@@ -293,7 +369,7 @@
           <p class="text-xs text-zinc-400 mt-3 font-medium">Mark R., NYC &bull; MadMuscle</p>
         </div>
 
-        <!-- Review 3 -->
+        <!-- Card 3 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
           <span class="absolute top-4 right-4 text-xs font-black text-violet-600 bg-violet-50 px-2 py-0.5 rounded-full border border-violet-200">$360/yr</span>
           <div class="text-amber-400 text-sm mb-2">★★★★☆</div>
@@ -301,7 +377,7 @@
           <p class="text-xs text-zinc-400 mt-3 font-medium">Priya K., SF &bull; AI Tools</p>
         </div>
 
-        <!-- Review 4 -->
+        <!-- Card 4 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
           <span class="absolute top-4 right-4 text-xs font-black text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">$620/yr</span>
           <div class="text-amber-400 text-sm mb-2">★★★★★</div>
@@ -309,7 +385,7 @@
           <p class="text-xs text-zinc-400 mt-3 font-medium">David L., Miami &bull; Short Drama</p>
         </div>
 
-        <!-- Review 5 -->
+        <!-- Card 5 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
           <span class="absolute top-4 right-4 text-xs font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">$420/yr</span>
           <div class="text-amber-400 text-sm mb-2">★★★★★</div>
@@ -317,7 +393,7 @@
           <p class="text-xs text-zinc-400 mt-3 font-medium">Amanda S., Seattle &bull; SaaS Tools</p>
         </div>
 
-        <!-- Review 6 -->
+        <!-- Card 6 -->
         <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
           <span class="absolute top-4 right-4 text-xs font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">$500/yr</span>
           <div class="text-amber-400 text-sm mb-2">★★★★★</div>
@@ -328,66 +404,66 @@
     </div>
   </section>
 
-  <!-- FAQ ACCORDION -->
-  <section class="px-4 sm:px-6 py-12 bg-zinc-50 border-t border-zinc-200">
+  <!-- 8. FAQ ACCORDION (NICHE POSITION) -->
+  <section id="faq" class="px-4 sm:px-6 py-12 bg-zinc-50 border-t border-zinc-200">
     <div class="max-w-3xl mx-auto">
       <h2 class="text-2xl sm:text-3xl font-black text-center text-zinc-950 mb-8">FAQ</h2>
-      <div class="space-y-3" id="faqAccordion">
-        <!-- Item 1 -->
-        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+      <div class="space-y-3">
+        <!-- FAQ 1 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
           <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
             <span>How does SaveBucks work?</span>
-            <span id="faqIcon-1">&plus;</span>
+            <span id="faqIcon-1" class="text-lg font-bold text-zinc-400">&minus;</span>
           </button>
-          <div id="faqContent-1" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
+          <div id="faqContent-1" class="px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
             Add your subscriptions (64+ apps pre-filled). We calculate monthly burn, flag weekly billing traps (ReelShort $14.99/week, MadMuscle $29.99/week), show exact cancel steps from our CANCEL_DB, and suggest cheaper alternatives. All data stays in localStorage.
           </div>
         </div>
-        <!-- Item 2 -->
-        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+        <!-- FAQ 2 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
           <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
             <span>Is my data safe? Do you collect it?</span>
-            <span id="faqIcon-2">&plus;</span>
+            <span id="faqIcon-2" class="text-lg font-bold text-zinc-400">&plus;</span>
           </button>
           <div id="faqContent-2" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
             All data stays 100% inside your device's browser localStorage. We do not store or sell your bank passwords or financial data.
           </div>
         </div>
-        <!-- Item 3 -->
-        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+        <!-- FAQ 3 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
           <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
             <span>Which 64+ apps are supported?</span>
-            <span id="faqIcon-3">&plus;</span>
+            <span id="faqIcon-3" class="text-lg font-bold text-zinc-400">&plus;</span>
           </button>
           <div id="faqContent-3" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
             All major streaming, AI platforms (ChatGPT, Claude), fitness trackers (MadMuscle, JustFit), and micro-drama apps (ReelShort, DramaBox).
           </div>
         </div>
-        <!-- Item 4 -->
-        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+        <!-- FAQ 4 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
           <button onclick="toggleFaq(4)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
             <span>How do you make money? Is it transparent?</span>
-            <span id="faqIcon-4">&plus;</span>
+            <span id="faqIcon-4" class="text-lg font-bold text-zinc-400">&plus;</span>
           </button>
           <div id="faqContent-4" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
             We offer an optional Lifetime Pro upgrade ($19) and transparent affiliate links for cheaper alternative software.
           </div>
         </div>
-        <!-- Item 5 -->
-        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+        <!-- FAQ 5 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
           <button onclick="toggleFaq(5)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
             <span>How to cancel MadMuscle / ReelShort? Deleting app enough?</span>
-            <span id="faqIcon-5">&plus;</span>
+            <span id="faqIcon-5" class="text-lg font-bold text-zinc-400">&plus;</span>
           </button>
           <div id="faqContent-5" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
             No! Deleting the app does not stop active subscriptions. You must cancel via Apple ID / Google Play Subscriptions menu or their web portal.
           </div>
         </div>
-        <!-- Item 6 -->
-        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+        <!-- FAQ 6 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-sm">
           <button onclick="toggleFaq(6)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
             <span>What is the free limit?</span>
-            <span id="faqIcon-6">&plus;</span>
+            <span id="faqIcon-6" class="text-lg font-bold text-zinc-400">&plus;</span>
           </button>
           <div id="faqContent-6" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
             You can track up to 3 subscriptions completely free forever.
@@ -397,10 +473,9 @@
     </div>
   </section>
 
-  <!-- LEGAL & POLICIES -->
+  <!-- 9. LEGAL & POLICIES (TERMS & PRIVACY - SABSE NICHE) -->
   <section class="px-4 sm:px-6 py-10 bg-white border-t border-zinc-200 text-xs text-zinc-500">
     <div class="max-w-3xl mx-auto space-y-6">
-      <!-- Terms -->
       <div>
         <h4 class="font-bold text-zinc-900 text-sm mb-2 flex items-center gap-1.5">
           <span>🛡️</span> Terms of Service
@@ -413,7 +488,6 @@
         </ul>
       </div>
 
-      <!-- Privacy -->
       <div>
         <h4 class="font-bold text-zinc-900 text-sm mb-2 flex items-center gap-1.5">
           <span>🔒</span> Privacy Policy
@@ -428,96 +502,13 @@
     </div>
   </section>
 
-  <!-- INTERACTIVE DASHBOARD SECTION -->
-  <section id="dashboard" class="px-4 sm:px-6 py-12 bg-zinc-50 border-t-2 border-zinc-200">
-    <div class="max-w-3xl mx-auto">
-      
-      <!-- Dashboard Top Header -->
-      <div class="flex items-center justify-between mb-6">
-        <div class="flex items-center gap-2">
-          <span class="text-xl">✨</span>
-          <h2 class="text-2xl font-black text-zinc-900">Dashboard</h2>
-        </div>
-        <div class="flex items-center gap-2">
-          <button class="px-3.5 py-1.5 rounded-lg bg-sky-500 text-white font-bold text-xs shadow-sm hover:bg-sky-600">
-            Upgrade Pro $4.99
-          </button>
-          <span class="text-xs font-bold px-2 py-1 bg-zinc-200 text-zinc-700 rounded-md" id="subCounterPill">4/5 subs</span>
-        </div>
-      </div>
-
-      <!-- Add Subscription Form Card -->
-      <div class="p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-sm mb-6">
-        <h3 class="text-base font-bold text-zinc-900 mb-1">Add Subscription</h3>
-        <p class="text-xs text-zinc-400 mb-4">Autocomplete from 64+ apps</p>
-
-        <form id="dashboardAddForm" onsubmit="addNewSubscription(event)" class="space-y-4">
-          <div>
-            <input type="text" id="appSearchInput" required placeholder="🔍 Netflix, Claude Pro, ReelShort..." class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Price</label>
-              <input type="number" step="0.01" id="appPriceInput" required placeholder="9.99" class="w-full mt-1 px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
-            </div>
-            <div>
-              <label class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Cycle</label>
-              <select id="appCycleSelect" class="w-full mt-1 px-3 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
-                <option value="Monthly">Monthly</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Yearly">Yearly</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-2 pt-1">
-            <input type="checkbox" id="appTrialCheckbox" class="rounded border-zinc-300 text-fuchsia-600 focus:ring-fuchsia-500 h-4 w-4">
-            <label for="appTrialCheckbox" class="text-xs font-medium text-zinc-600">Trial? (remind before charge)</label>
-          </div>
-
-          <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-fuchsia-600 to-violet-600 hover:opacity-95 shadow-lg shadow-fuchsia-500/25 transition">
-            &plus; Add (<span id="btnSubCount">4/5</span>)
-          </button>
-        </form>
-
-        <!-- Weekly Trap Warning Box -->
-        <div class="mt-5 p-4 rounded-xl bg-amber-50/80 border border-amber-200 text-xs text-amber-900 leading-relaxed">
-          <p class="font-bold flex items-center gap-1.5 text-amber-950 mb-1">
-            <span>⚠️</span> Weekly trap warning
-          </p>
-          ReelShort $14.99/week = $60/mo, MadMuscle $29.99/week = $120/mo. Deleting app &ne; cancel. Use our cancel DB.
-        </div>
-
-        <!-- Metric Counters -->
-        <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-zinc-100 text-center">
-          <div>
-            <h4 class="text-lg font-black text-zinc-900" id="dashMonthly">$130</h4>
-            <p class="text-[11px] text-zinc-400">Monthly burn</p>
-          </div>
-          <div>
-            <h4 class="text-lg font-black text-zinc-900" id="dashYearly">$1565</h4>
-            <p class="text-[11px] text-zinc-400">Yearly waste</p>
-          </div>
-          <div>
-            <h4 class="text-lg font-black text-zinc-900">65</h4>
-            <p class="text-[11px] text-zinc-400">Weekly trap $</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Subscription Live Cards -->
-      <div id="subsList" class="space-y-3">
-        <!-- Rendered via JS -->
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="px-4 sm:px-6 py-10 bg-white border-t border-zinc-200 text-sm text-zinc-500">
+  <!-- 10. FOOTER -->
+  <footer class="px-4 sm:px-6 py-10 bg-zinc-50 border-t border-zinc-200 text-sm text-zinc-500">
     <div class="max-w-3xl mx-auto">
       <div class="flex items-center gap-2 mb-3">
-        <div class="h-6 w-6 rounded bg-gradient-to-tr from-violet-600 to-fuchsia-500 flex items-center justify-center text-white text-xs font-black">S</div>
+        <div class="h-6 w-6 rounded bg-gradient-to-tr from-violet-600 to-fuchsia-500 flex items-center justify-center text-white text-xs font-black">
+          S
+        </div>
         <span class="font-bold text-zinc-900">SaveBucks</span>
       </div>
       <p class="text-xs text-zinc-500 mb-4">
@@ -525,7 +516,7 @@
       </p>
       <p class="text-xs text-zinc-400 mb-6">Support: <a href="mailto:futuretechai1999@gmail.com" class="underline">futuretechai1999@gmail.com</a></p>
 
-      <div class="grid grid-cols-2 gap-6 text-xs border-t border-zinc-100 pt-6">
+      <div class="grid grid-cols-2 gap-6 text-xs border-t border-zinc-200 pt-6">
         <div>
           <h5 class="font-bold text-zinc-900 mb-2">Product</h5>
           <ul class="space-y-1">
@@ -537,7 +528,7 @@
         <div>
           <h5 class="font-bold text-zinc-900 mb-2">Legal</h5>
           <ul class="space-y-1">
-            <li><a href="#faqAccordion" class="hover:text-zinc-900">FAQ</a></li>
+            <li><a href="#faq" class="hover:text-zinc-900">FAQ</a></li>
             <li><a href="#" class="hover:text-zinc-900">Terms</a></li>
             <li><a href="#" class="hover:text-zinc-900">Contact</a></li>
           </ul>
@@ -546,7 +537,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPT LOGIC -->
+  <!-- JAVASCRIPT STATE & LOGIC -->
   <script>
     let activeSubscriptions = [
       { id: 1, name: "ReelShort", price: 14.99, cycle: "Weekly", category: "Short Drama", isTrial: true, isTrap: true, expiry: "9/22/2026", color: "bg-amber-500", initials: "RE" },
@@ -555,16 +546,24 @@
       { id: 4, name: "Netflix", price: 15.49, cycle: "Monthly", category: "Entertainment", isTrial: false, isTrap: false, expiry: "Active", color: "bg-rose-600", initials: "NE" }
     ];
 
+    function calculateTotals() {
+      let monthlyTotal = 0;
+      activeSubscriptions.forEach(sub => {
+        let monthly = sub.cycle === 'Weekly' ? (sub.price * 4.33) : (sub.cycle === 'Yearly' ? sub.price / 12 : sub.price);
+        monthlyTotal += monthly;
+      });
+      return {
+        monthly: Math.round(monthlyTotal),
+        yearly: Math.round(monthlyTotal * 12)
+      };
+    }
+
     function renderSubs() {
       const container = document.getElementById('subsList');
       container.innerHTML = '';
-
-      let monthlyTotal = 0;
+      const totals = calculateTotals();
 
       activeSubscriptions.forEach(sub => {
-        let monthlyEquivalent = sub.cycle === 'Weekly' ? sub.price * 4.33 : (sub.cycle === 'Yearly' ? sub.price / 12 : sub.price);
-        monthlyTotal += monthlyEquivalent;
-
         const card = document.createElement('div');
         card.className = "p-4 rounded-2xl bg-white border border-zinc-200/90 shadow-sm flex flex-col gap-3";
         card.innerHTML = `
@@ -589,7 +588,7 @@
           <div class="flex items-center justify-between pt-2 border-t border-zinc-100 text-xs text-zinc-500">
             <a href="https://support.apple.com" target="_blank" class="font-semibold text-zinc-800 hover:text-fuchsia-600 underline">Cancel Guide</a>
             <div class="flex items-center gap-3">
-              <button class="hover:text-zinc-900" title="Reminder set">🔔</button>
+              <button class="hover:text-zinc-900" title="Reminder">🔔</button>
               <button onclick="removeSub(${sub.id})" class="text-zinc-400 hover:text-rose-600" title="Delete">🗑️</button>
             </div>
           </div>
@@ -597,10 +596,16 @@
         container.appendChild(card);
       });
 
-      document.getElementById('dashMonthly').innerText = `$${Math.round(monthlyTotal)}`;
-      document.getElementById('dashYearly').innerText = `$${Math.round(monthlyTotal * 12)}`;
+      // Update Dashboard values
+      document.getElementById('dashMonthly').innerText = `$${totals.monthly}`;
+      document.getElementById('dashYearly').innerText = `$${totals.yearly}`;
       document.getElementById('subCounterPill').innerText = `${activeSubscriptions.length}/5 subs`;
       document.getElementById('btnSubCount').innerText = `${activeSubscriptions.length}/5`;
+
+      // Update Preview Card values
+      document.getElementById('previewMonthly').innerText = `$${totals.monthly}`;
+      document.getElementById('previewYearly').innerText = `$${totals.yearly}`;
+      document.getElementById('previewActive').innerText = activeSubscriptions.length;
     }
 
     function addNewSubscription(e) {
@@ -648,6 +653,7 @@
       }
     }
 
+    // Initial render
     renderSubs();
   </script>
 </body>
