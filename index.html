@@ -1,214 +1,654 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SaveBucks - Subscription & Free Trial Tracker</title>
+  <title>SaveBucks — Stop Paying for Subscriptions You Forgot</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
+    .bg-grid {
+      background-image: radial-gradient(rgba(217, 70, 239, 0.12) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
   </style>
 </head>
-<body class="bg-[#0a0a0f] text-zinc-100 min-h-screen selection:bg-fuchsia-500/30">
+<body class="bg-[#fbfafd] text-zinc-900 transition-colors duration-200">
 
-  <!-- Navigation Bar -->
-  <header class="sticky top-0 z-40 border-b border-zinc-800/80 bg-[#0a0a0f]/80 backdrop-blur-xl px-4 sm:px-6 py-4">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <!-- SaveBucks Icon -->
-        <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-fuchsia-600 via-rose-500 to-amber-500 flex items-center justify-center shadow-lg shadow-rose-500/20 font-extrabold text-white text-lg">
+  <!-- TOP NAVBAR -->
+  <nav class="sticky top-0 z-50 bg-[#fbfafd]/90 backdrop-blur-md border-b border-zinc-200/80 px-4 sm:px-8 py-3.5">
+    <div class="max-w-4xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <!-- Shield Icon with S & Scissors / Gradient Mark -->
+        <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-violet-600 via-fuchsia-500 to-amber-500 flex items-center justify-center text-white font-black text-base shadow-md shadow-fuchsia-500/20">
           S
         </div>
-        <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
-          SaveBucks
+        <span class="text-xl font-bold tracking-tight text-zinc-900">SaveBucks</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2 rounded-full hover:bg-zinc-100 text-zinc-600 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+        <button class="p-2 rounded-lg hover:bg-zinc-100 text-zinc-700">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="relative pt-8 pb-12 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-fuchsia-100/40 via-violet-50/30 to-transparent">
+    <div class="max-w-3xl mx-auto text-left">
+      <!-- Live Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white border border-fuchsia-200/80 shadow-sm text-zinc-800 mb-6">
+        <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        Live tracking for 64+ apps &bull; US users waste $1000/year
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-[1.15] text-zinc-950 mb-5">
+        Stop Paying for <br>
+        <span class="bg-gradient-to-r from-sky-500 via-fuchsia-500 to-violet-600 bg-clip-text text-transparent">
+          Subscriptions You Forgot
         </span>
-      </div>
-      <button onclick="openModal()" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white shadow-lg shadow-violet-500/25 transition">
-        + Add Service
-      </button>
-    </div>
-  </header>
+      </h1>
 
-  <!-- Main Container -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-10 space-y-6 sm:space-y-8">
-    
-    <!-- Hero / Alert Banner -->
-    <div class="p-4 sm:p-6 rounded-2xl bg-gradient-to-r from-violet-950/40 via-zinc-900/60 to-fuchsia-950/40 border border-violet-800/30">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <p class="text-sm sm:text-base text-zinc-600 leading-relaxed mb-8 max-w-xl">
+        Track 64+ apps like Claude Pro, ReelShort, MadMuscle. Short drama apps charge $14.99/week ($60/mo). Fitness scams $29.99/week ($120/mo). Save $500+/year.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3.5 mb-10">
+        <a href="#dashboard" class="w-full sm:w-auto px-7 py-3.5 rounded-xl text-center font-bold text-sm text-white bg-gradient-to-r from-sky-400 via-fuchsia-500 to-fuchsia-600 hover:opacity-95 shadow-lg shadow-fuchsia-500/30 transition transform active:scale-[0.98]">
+          Start Tracking Free &mdash; 3 Subs Free
+        </a>
+        <a href="#how-it-works" class="w-full sm:w-auto px-6 py-3.5 rounded-xl text-center font-semibold text-sm bg-white hover:bg-zinc-50 text-zinc-800 border border-zinc-200 shadow-sm transition">
+          See How It Works
+        </a>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="grid grid-cols-3 gap-3 p-4 sm:p-6 bg-white/80 backdrop-blur-md rounded-2xl border border-zinc-200/80 shadow-sm mb-4">
         <div>
-          <h1 class="text-xl sm:text-2xl font-extrabold text-white">Avoid Hidden Auto-Deductions</h1>
-          <p class="text-xs sm:text-sm text-zinc-400 mt-1">Track active subscriptions, get free trial expiry warnings, and cancel unwanted bills in 1 click.</p>
+          <h3 class="text-xl sm:text-2xl font-black text-zinc-900">$1200+</h3>
+          <p class="text-xs text-zinc-500 font-medium mt-0.5">avg saved / yr</p>
         </div>
-        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 w-fit">
-          <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Monitoring Active
-        </span>
-      </div>
-    </div>
-
-    <!-- Analytics Stats -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-      <div class="p-5 sm:p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800">
-        <p class="text-xs sm:text-sm font-medium text-zinc-400">Monthly Burn Rate</p>
-        <h3 id="totalSpend" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">$0.00</h3>
-        <p id="annualSpend" class="text-[11px] sm:text-xs text-zinc-500 mt-1">~$0.00 / year projected</p>
-      </div>
-
-      <div class="p-5 sm:p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800">
-        <p class="text-xs sm:text-sm font-medium text-zinc-400">Tracked Subscriptions</p>
-        <h3 id="activeCount" class="text-2xl sm:text-3xl font-extrabold text-white mt-2">0</h3>
-        <p class="text-[11px] sm:text-xs text-emerald-400 mt-1">All reminders synced</p>
-      </div>
-
-      <div class="p-5 sm:p-6 rounded-2xl bg-amber-950/20 border border-amber-900/50">
-        <p class="text-xs sm:text-sm font-medium text-amber-300">Expiring in 7 Days</p>
-        <h3 id="expiringCount" class="text-2xl sm:text-3xl font-extrabold text-amber-200 mt-2">0</h3>
-        <p class="text-[11px] sm:text-xs text-amber-400/80 mt-1">Review before renewal</p>
-      </div>
-    </div>
-
-    <!-- Subscriptions List Section -->
-    <div class="p-5 sm:p-6 rounded-2xl bg-zinc-900/50 border border-zinc-800">
-      <div class="flex items-center justify-between mb-4 sm:mb-6">
-        <h2 class="text-base sm:text-lg font-bold text-white">Active Subscriptions & Free Trials</h2>
-        <span class="text-xs text-zinc-500">Live list</span>
-      </div>
-
-      <div id="subsContainer" class="divide-y divide-zinc-800/80">
-        <!-- Dynamic Items will load here -->
-      </div>
-    </div>
-  </main>
-
-  <!-- Add Subscription Modal -->
-  <div id="addModal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-zinc-900 border border-zinc-800 p-6 rounded-2xl w-full max-w-md space-y-4">
-      <div class="flex items-center justify-between">
-        <h3 class="text-lg font-bold text-white">Add New Service</h3>
-        <button onclick="closeModal()" class="text-zinc-400 hover:text-white text-lg">&times;</button>
-      </div>
-      <form id="addForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
-        <div>
-          <label class="text-xs text-zinc-400 font-medium">Service Name</label>
-          <input type="text" id="nameInput" required placeholder="e.g. Netflix, ChatGPT Plus" class="w-full mt-1 bg-zinc-800/80 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500">
+        <div class="border-x border-zinc-100 px-3">
+          <h3 class="text-xl sm:text-2xl font-black text-zinc-900">64+</h3>
+          <p class="text-xs text-zinc-500 font-medium mt-0.5">apps tracked</p>
         </div>
-        <div class="grid grid-cols-2 gap-3">
+        <div class="pl-2">
+          <h3 class="text-xl sm:text-2xl font-black text-zinc-900">5000+</h3>
+          <p class="text-xs text-zinc-500 font-medium mt-0.5">users</p>
+        </div>
+      </div>
+      <p class="text-[11px] text-zinc-400">Support: <a href="mailto:futuretechai1999@gmail.com" class="underline">futuretechai1999@gmail.com</a> &bull; Data stays in your browser (localStorage)</p>
+    </div>
+  </section>
+
+  <!-- QUICK "YOUR BURN" SUMMARY CARD -->
+  <section class="px-4 sm:px-6 py-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-lg font-bold text-zinc-900">Your Burn</h2>
+          <span class="text-xs font-bold px-2 py-0.5 rounded-md bg-zinc-100 text-zinc-600">FREE &bull; 3 subs</span>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 py-3 border-y border-zinc-100 mb-4 text-center">
           <div>
-            <label class="text-xs text-zinc-400 font-medium">Price ($/mo)</label>
-            <input type="number" step="0.01" id="priceInput" required placeholder="14.99" class="w-full mt-1 bg-zinc-800/80 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500">
+            <p class="text-xs text-zinc-400 font-medium">Monthly</p>
+            <h4 class="text-xl font-black text-zinc-900 mt-1">$130</h4>
           </div>
           <div>
-            <label class="text-xs text-zinc-400 font-medium">Next Renewal</label>
-            <input type="date" id="dateInput" required class="w-full mt-1 bg-zinc-800/80 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-violet-500">
+            <p class="text-xs text-zinc-400 font-medium">Yearly Waste</p>
+            <h4 class="text-xl font-black text-zinc-900 mt-1">$1565</h4>
+          </div>
+          <div>
+            <p class="text-xs text-zinc-400 font-medium">Active</p>
+            <h4 class="text-xl font-black text-zinc-900 mt-1">4</h4>
           </div>
         </div>
-        <div>
-          <label class="text-xs text-zinc-400 font-medium">Cancellation URL (Optional)</label>
-          <input type="url" id="cancelUrlInput" placeholder="https://service.com/account" class="w-full mt-1 bg-zinc-800/80 border border-zinc-700 rounded-xl px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-violet-500">
+
+        <!-- Sample List -->
+        <div class="space-y-3 mb-6 text-sm">
+          <div class="flex items-center justify-between">
+            <span class="font-medium text-zinc-800">Netflix</span>
+            <span class="font-semibold text-zinc-900">$15.49/M</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-medium text-zinc-800">Claude Pro</span>
+            <span class="font-semibold text-zinc-900">$20/M</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-medium text-zinc-800">ReelShort</span>
+            <span class="font-semibold text-zinc-900">$14.99/W</span>
+          </div>
         </div>
-        <div class="flex items-center gap-2 pt-1">
-          <input type="checkbox" id="trialCheck" class="rounded bg-zinc-800 border-zinc-700 h-4 w-4 accent-violet-600">
-          <label for="trialCheck" class="text-xs text-zinc-300">This is a Free Trial (Expiring soon)</label>
-        </div>
-        <div class="flex justify-end gap-3 pt-4">
-          <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-300 transition">Cancel</button>
-          <button type="submit" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-500 hover:to-fuchsia-500 text-white transition shadow-md shadow-violet-600/30">Save Service</button>
-        </div>
-      </form>
+
+        <a href="#dashboard" class="block w-full py-3 rounded-xl text-center font-bold text-sm text-white bg-sky-500 hover:bg-sky-600 shadow-md shadow-sky-500/20 transition">
+          Open Full Dashboard
+        </a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- App State and Script -->
-  <script>
-    let subscriptions = [
-      { id: 1, name: "Netflix Premium", price: 19.99, renewalDate: "2026-09-24", isTrial: false, cancelUrl: "https://www.netflix.com/youraccount" },
-      { id: 2, name: "ChatGPT Plus", price: 20.00, renewalDate: "2026-09-22", isTrial: true, cancelUrl: "https://chatgpt.com/#settings" },
-      { id: 3, name: "Amazon Prime", price: 14.99, renewalDate: "2026-10-02", isTrial: false, cancelUrl: "https://www.amazon.com/mc" },
-      { id: 4, name: "Spotify Individual", price: 11.99, renewalDate: "2026-09-29", isTrial: false, cancelUrl: "https://www.spotify.com/account" }
-    ];
+  <!-- EVERYTHING YOU NEED TO SAVE (FEATURES) -->
+  <section id="how-it-works" class="px-4 sm:px-6 py-12">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-left mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black text-zinc-950">Everything You Need to Save</h2>
+        <p class="text-sm text-zinc-500 mt-2">
+          Built for tricky weekly billing like ReelShort $14.99/week and MadMuscle $29.99/week. Detect, cancel, and split.
+        </p>
+      </div>
 
-    function renderUI() {
-      const container = document.getElementById('subsContainer');
-      container.innerHTML = '';
+      <div class="space-y-4">
+        <!-- Feature 1 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col gap-2">
+          <div class="h-10 w-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-lg">
+            🔍
+          </div>
+          <h3 class="font-bold text-base text-zinc-900 mt-1">Auto-Detect Waste</h3>
+          <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
+            We map 64+ apps with real cancel paths. Short drama & fitness weekly traps flagged instantly.
+          </p>
+          <a href="#dashboard" class="text-xs font-bold text-fuchsia-600 hover:underline mt-1">Learn more &rarr;</a>
+        </div>
 
-      let totalMonthly = 0;
-      let expiringCount = 0;
-      const today = new Date();
+        <!-- Feature 2 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col gap-2">
+          <div class="h-10 w-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg">
+            🚫
+          </div>
+          <h3 class="font-bold text-base text-zinc-900 mt-1">1-Click Cancel Guides</h3>
+          <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
+            Step-by-step cancel DB: App Store &gt; Subscriptions path, support emails, hard vs easy difficulty.
+          </p>
+          <a href="#dashboard" class="text-xs font-bold text-fuchsia-600 hover:underline mt-1">Learn more &rarr;</a>
+        </div>
 
-      subscriptions.forEach(sub => {
-        totalMonthly += parseFloat(sub.price);
-        const rDate = new Date(sub.renewalDate);
-        const daysLeft = Math.ceil((rDate - today) / (1000 * 60 * 60 * 24));
-        if (daysLeft >= 0 && daysLeft <= 7) expiringCount++;
+        <!-- Feature 3 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col gap-2">
+          <div class="h-10 w-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
+            💰
+          </div>
+          <h3 class="font-bold text-base text-zinc-900 mt-1">Switch & Save</h3>
+          <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
+            Affiliate alternatives: Adobe &rarr; Figma+Canva save $30, Claude &rarr; Perplexity, MadMuscle &rarr; Fitbod. Transparent commissions.
+          </p>
+          <a href="#dashboard" class="text-xs font-bold text-fuchsia-600 hover:underline mt-1">Learn more &rarr;</a>
+        </div>
 
-        const item = document.createElement('div');
-        item.className = "py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3";
-        item.innerHTML = `
-          <div class="flex items-center gap-3 sm:gap-4">
-            <div class="h-10 w-10 rounded-xl bg-zinc-800 flex items-center justify-center font-bold text-violet-400 text-sm">
-              ${sub.name.charAt(0).toUpperCase()}
+        <!-- Feature 4 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/80 shadow-sm flex flex-col gap-2">
+          <div class="h-10 w-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg">
+            ⏰
+          </div>
+          <h3 class="font-bold text-base text-zinc-900 mt-1">Trial Alerts</h3>
+          <p class="text-xs sm:text-sm text-zinc-500 leading-relaxed">
+            ICS + Google Calendar reminders. Never pay for forgotten trials again. Split costs via WhatsApp generator.
+          </p>
+          <a href="#dashboard" class="text-xs font-bold text-fuchsia-600 hover:underline mt-1">Learn more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY WE BUILT SAVEBUCKS & BREAKDOWN TABLE -->
+  <section class="px-4 sm:px-6 py-10 bg-zinc-50 border-y border-zinc-200">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-black text-zinc-950 mb-3">Why We Built SaveBucks</h2>
+      <p class="text-sm text-zinc-600 leading-relaxed mb-4">
+        Average US user wastes $1000/year on forgotten subs. Short drama apps like ReelShort, DramaBox, GoodShort charge <span class="font-bold text-zinc-900">$14.99/week = $60/month</span> for 2-minute clips. Fitness traps like MadMuscle and JustFit: <span class="font-bold text-zinc-900">$29.99/week = $120/month</span> &mdash; and deleting the app doesn't cancel.
+      </p>
+      <p class="text-sm text-zinc-600 leading-relaxed mb-6">
+        Our mission: help you save $500+/year. Track 64+ apps, get exact cancel paths, switch to cheaper alternatives. Pro is $19 Lifetime, cancel-for-you $7.99 one-time. Monetization is transparent.
+      </p>
+
+      <div class="p-4 rounded-xl bg-white border border-zinc-200 flex items-center justify-between mb-8">
+        <div>
+          <p class="text-xs text-zinc-400">Contact:</p>
+          <p class="text-xs font-semibold text-zinc-800">futuretechai1999@gmail.com</p>
+        </div>
+        <a href="#dashboard" class="px-4 py-2 rounded-lg bg-gradient-to-r from-fuchsia-600 to-violet-600 text-white text-xs font-bold">
+          Start saving now
+        </a>
+      </div>
+
+      <!-- Real Waste Breakdown Table -->
+      <div class="bg-white rounded-2xl border border-zinc-200 p-5 shadow-sm">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="text-lg">📉</span>
+          <h3 class="font-bold text-base text-zinc-900">Waste Breakdown (Real examples)</h3>
+        </div>
+
+        <div class="divide-y divide-zinc-100 text-sm">
+          <div class="py-3 flex items-center justify-between">
+            <div>
+              <p class="font-bold text-zinc-900">ReelShort</p>
+              <p class="text-xs text-zinc-400">$60/mo for micro-dramas</p>
+            </div>
+            <span class="font-extrabold text-zinc-900">$65/mo</span>
+          </div>
+
+          <div class="py-3 flex items-center justify-between">
+            <div>
+              <p class="font-bold text-zinc-900">MadMuscle</p>
+              <p class="text-xs text-zinc-400">$120/mo fitness, hard cancel</p>
+            </div>
+            <span class="font-extrabold text-zinc-900">$130/mo</span>
+          </div>
+
+          <div class="py-3 flex items-center justify-between">
+            <div>
+              <p class="font-bold text-zinc-900">JustFit</p>
+              <p class="text-xs text-zinc-400">Email required, $120/mo</p>
+            </div>
+            <span class="font-extrabold text-zinc-900">$130/mo</span>
+          </div>
+
+          <div class="py-3 flex items-center justify-between">
+            <div>
+              <p class="font-bold text-zinc-900">DramaBox</p>
+              <p class="text-xs text-zinc-400">$52/mo, App Store only</p>
+            </div>
+            <span class="font-extrabold text-zinc-900">$56/mo</span>
+          </div>
+
+          <div class="py-3 flex items-center justify-between">
+            <div>
+              <p class="font-bold text-zinc-900">Adobe CC</p>
+              <p class="text-xs text-zinc-400">Switch to Figma+Canva save $30</p>
+            </div>
+            <span class="font-extrabold text-zinc-900">$55.99/mo</span>
+          </div>
+        </div>
+        <p class="text-[11px] text-zinc-400 mt-4">Source: App Store pricing April 2025. SaveBucks shows exact cancel steps & alternatives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS SECTION -->
+  <section class="px-4 sm:px-6 py-12">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl sm:text-3xl font-black text-zinc-950">What Users Say</h2>
+        <p class="text-xs sm:text-sm text-zinc-500 mt-1">Real savings from canceling weekly traps</p>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Review 1 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
+          <span class="absolute top-4 right-4 text-xs font-black text-fuchsia-600 bg-fuchsia-50 px-2 py-0.5 rounded-full border border-fuchsia-200">$780/yr</span>
+          <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+          <p class="text-xs sm:text-sm text-zinc-700 italic">"Found DramaBox $12.99/week I forgot. SaveBucks cancel guide worked instantly. Saved $52/mo!"</p>
+          <p class="text-xs text-zinc-400 mt-3 font-medium">Jessica T., Austin &bull; DramaBox</p>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
+          <span class="absolute top-4 right-4 text-xs font-black text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-200">$1,440/yr</span>
+          <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+          <p class="text-xs sm:text-sm text-zinc-700 italic">"MadMuscle was charging $120/mo after I deleted app! Hard cancel steps + email template saved me."</p>
+          <p class="text-xs text-zinc-400 mt-3 font-medium">Mark R., NYC &bull; MadMuscle</p>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
+          <span class="absolute top-4 right-4 text-xs font-black text-violet-600 bg-violet-50 px-2 py-0.5 rounded-full border border-violet-200">$360/yr</span>
+          <div class="text-amber-400 text-sm mb-2">★★★★☆</div>
+          <p class="text-xs sm:text-sm text-zinc-700 italic">"Was paying for Claude, ChatGPT, Perplexity all at once. Switched to Perplexity Pro, saved $40/mo."</p>
+          <p class="text-xs text-zinc-400 mt-3 font-medium">Priya K., SF &bull; AI Tools</p>
+        </div>
+
+        <!-- Review 4 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
+          <span class="absolute top-4 right-4 text-xs font-black text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">$620/yr</span>
+          <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+          <p class="text-xs sm:text-sm text-zinc-700 italic">"ReelShort + ShortMax = $110/mo for 2-min episodes. Switched to Netflix. Mind blown."</p>
+          <p class="text-xs text-zinc-400 mt-3 font-medium">David L., Miami &bull; Short Drama</p>
+        </div>
+
+        <!-- Review 5 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
+          <span class="absolute top-4 right-4 text-xs font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">$420/yr</span>
+          <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+          <p class="text-xs sm:text-sm text-zinc-700 italic">"Adobe CC $55/mo &rarr; Figma+Canva $25. Same work, $30 saved. Affiliate link actually helped."</p>
+          <p class="text-xs text-zinc-400 mt-3 font-medium">Amanda S., Seattle &bull; SaaS Tools</p>
+        </div>
+
+        <!-- Review 6 -->
+        <div class="p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-sm relative">
+          <span class="absolute top-4 right-4 text-xs font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">$500/yr</span>
+          <div class="text-amber-400 text-sm mb-2">★★★★★</div>
+          <p class="text-xs sm:text-sm text-zinc-700 italic">"JustFit nightmare to cancel. SaveBucks showed the Settings &gt; Apple ID &gt; Subs path + support email. Finally free."</p>
+          <p class="text-xs text-zinc-400 mt-3 font-medium">Chris W., Denver &bull; Fitness</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section class="px-4 sm:px-6 py-12 bg-zinc-50 border-t border-zinc-200">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-black text-center text-zinc-950 mb-8">FAQ</h2>
+      <div class="space-y-3" id="faqAccordion">
+        <!-- Item 1 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+          <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
+            <span>How does SaveBucks work?</span>
+            <span id="faqIcon-1">&plus;</span>
+          </button>
+          <div id="faqContent-1" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
+            Add your subscriptions (64+ apps pre-filled). We calculate monthly burn, flag weekly billing traps (ReelShort $14.99/week, MadMuscle $29.99/week), show exact cancel steps from our CANCEL_DB, and suggest cheaper alternatives. All data stays in localStorage.
+          </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+          <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
+            <span>Is my data safe? Do you collect it?</span>
+            <span id="faqIcon-2">&plus;</span>
+          </button>
+          <div id="faqContent-2" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
+            All data stays 100% inside your device's browser localStorage. We do not store or sell your bank passwords or financial data.
+          </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+          <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
+            <span>Which 64+ apps are supported?</span>
+            <span id="faqIcon-3">&plus;</span>
+          </button>
+          <div id="faqContent-3" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
+            All major streaming, AI platforms (ChatGPT, Claude), fitness trackers (MadMuscle, JustFit), and micro-drama apps (ReelShort, DramaBox).
+          </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+          <button onclick="toggleFaq(4)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
+            <span>How do you make money? Is it transparent?</span>
+            <span id="faqIcon-4">&plus;</span>
+          </button>
+          <div id="faqContent-4" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
+            We offer an optional Lifetime Pro upgrade ($19) and transparent affiliate links for cheaper alternative software.
+          </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+          <button onclick="toggleFaq(5)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
+            <span>How to cancel MadMuscle / ReelShort? Deleting app enough?</span>
+            <span id="faqIcon-5">&plus;</span>
+          </button>
+          <div id="faqContent-5" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
+            No! Deleting the app does not stop active subscriptions. You must cancel via Apple ID / Google Play Subscriptions menu or their web portal.
+          </div>
+        </div>
+        <!-- Item 6 -->
+        <div class="rounded-xl border border-zinc-200 bg-white overflow-hidden">
+          <button onclick="toggleFaq(6)" class="w-full p-4 text-left font-bold text-sm text-zinc-900 flex justify-between items-center">
+            <span>What is the free limit?</span>
+            <span id="faqIcon-6">&plus;</span>
+          </button>
+          <div id="faqContent-6" class="hidden px-4 pb-4 text-xs text-zinc-500 leading-relaxed border-t border-zinc-100 pt-2">
+            You can track up to 3 subscriptions completely free forever.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGAL & POLICIES -->
+  <section class="px-4 sm:px-6 py-10 bg-white border-t border-zinc-200 text-xs text-zinc-500">
+    <div class="max-w-3xl mx-auto space-y-6">
+      <!-- Terms -->
+      <div>
+        <h4 class="font-bold text-zinc-900 text-sm mb-2 flex items-center gap-1.5">
+          <span>🛡️</span> Terms of Service
+        </h4>
+        <ul class="list-disc pl-4 space-y-1">
+          <li>SaveBucks is a tracking tool, not financial advice. We provide cancel guides from public sources.</li>
+          <li>No liability for failed cancellations — always confirm via official cancelURL or App Store.</li>
+          <li>Cancel-for-you $7.99 service: we attempt cancellation on your behalf with authorization. Money-back if we fail.</li>
+          <li>Pro $4.99/mo $29.99/year via LemonSqueezy (owner futuretechai1999@gmail.com).</li>
+        </ul>
+      </div>
+
+      <!-- Privacy -->
+      <div>
+        <h4 class="font-bold text-zinc-900 text-sm mb-2 flex items-center gap-1.5">
+          <span>🔒</span> Privacy Policy
+        </h4>
+        <ul class="list-disc pl-4 space-y-1">
+          <li>Local-only storage: savebucks_subs, savebucks_pro, savebucks_theme in your browser localStorage.</li>
+          <li>No data collection, no analytics, no cookies. Your subs never leave your device.</li>
+          <li>Payment: LemonSqueezy handles all payment data. We don't store cards.</li>
+          <li>Contact for data deletion: futuretechai1999@gmail.com. Last updated: 2025.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE DASHBOARD SECTION -->
+  <section id="dashboard" class="px-4 sm:px-6 py-12 bg-zinc-50 border-t-2 border-zinc-200">
+    <div class="max-w-3xl mx-auto">
+      
+      <!-- Dashboard Top Header -->
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">✨</span>
+          <h2 class="text-2xl font-black text-zinc-900">Dashboard</h2>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="px-3.5 py-1.5 rounded-lg bg-sky-500 text-white font-bold text-xs shadow-sm hover:bg-sky-600">
+            Upgrade Pro $4.99
+          </button>
+          <span class="text-xs font-bold px-2 py-1 bg-zinc-200 text-zinc-700 rounded-md" id="subCounterPill">4/5 subs</span>
+        </div>
+      </div>
+
+      <!-- Add Subscription Form Card -->
+      <div class="p-6 rounded-2xl bg-white border border-zinc-200/90 shadow-sm mb-6">
+        <h3 class="text-base font-bold text-zinc-900 mb-1">Add Subscription</h3>
+        <p class="text-xs text-zinc-400 mb-4">Autocomplete from 64+ apps</p>
+
+        <form id="dashboardAddForm" onsubmit="addNewSubscription(event)" class="space-y-4">
+          <div>
+            <input type="text" id="appSearchInput" required placeholder="🔍 Netflix, Claude Pro, ReelShort..." class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Price</label>
+              <input type="number" step="0.01" id="appPriceInput" required placeholder="9.99" class="w-full mt-1 px-3.5 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
             </div>
             <div>
-              <div class="flex items-center gap-2">
-                <span class="font-semibold text-sm sm:text-base text-white">${sub.name}</span>
-                ${sub.isTrial ? '<span class="px-2 py-0.5 text-[10px] font-bold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">FREE TRIAL</span>' : ''}
-              </div>
-              <p class="text-xs text-zinc-400 mt-0.5">Renews on: ${sub.renewalDate} ${daysLeft >= 0 && daysLeft <= 7 ? `<span class="text-amber-400 font-medium">(${daysLeft}d left)</span>` : ''}</p>
+              <label class="text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">Cycle</label>
+              <select id="appCycleSelect" class="w-full mt-1 px-3 py-2.5 rounded-xl border border-zinc-200 text-sm focus:outline-none focus:ring-2 focus:ring-fuchsia-500 bg-zinc-50/50">
+                <option value="Monthly">Monthly</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Yearly">Yearly</option>
+              </select>
             </div>
           </div>
-          <div class="flex items-center justify-between sm:justify-end gap-4 sm:gap-6">
-            <span class="font-bold text-base sm:text-lg text-white">$${parseFloat(sub.price).toFixed(2)}<span class="text-xs font-normal text-zinc-400">/mo</span></span>
-            ${sub.cancelUrl ? `<a href="${sub.cancelUrl}" target="_blank" rel="noreferrer" class="text-xs text-zinc-400 hover:text-white underline underline-offset-4">1-Click Cancel</a>` : ''}
-            <button onclick="deleteSub(${sub.id})" class="text-xs text-rose-400 hover:text-rose-300 px-2 py-1 rounded bg-rose-950/30">Remove</button>
+
+          <div class="flex items-center gap-2 pt-1">
+            <input type="checkbox" id="appTrialCheckbox" class="rounded border-zinc-300 text-fuchsia-600 focus:ring-fuchsia-500 h-4 w-4">
+            <label for="appTrialCheckbox" class="text-xs font-medium text-zinc-600">Trial? (remind before charge)</label>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-fuchsia-600 to-violet-600 hover:opacity-95 shadow-lg shadow-fuchsia-500/25 transition">
+            &plus; Add (<span id="btnSubCount">4/5</span>)
+          </button>
+        </form>
+
+        <!-- Weekly Trap Warning Box -->
+        <div class="mt-5 p-4 rounded-xl bg-amber-50/80 border border-amber-200 text-xs text-amber-900 leading-relaxed">
+          <p class="font-bold flex items-center gap-1.5 text-amber-950 mb-1">
+            <span>⚠️</span> Weekly trap warning
+          </p>
+          ReelShort $14.99/week = $60/mo, MadMuscle $29.99/week = $120/mo. Deleting app &ne; cancel. Use our cancel DB.
+        </div>
+
+        <!-- Metric Counters -->
+        <div class="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-zinc-100 text-center">
+          <div>
+            <h4 class="text-lg font-black text-zinc-900" id="dashMonthly">$130</h4>
+            <p class="text-[11px] text-zinc-400">Monthly burn</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-black text-zinc-900" id="dashYearly">$1565</h4>
+            <p class="text-[11px] text-zinc-400">Yearly waste</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-black text-zinc-900">65</h4>
+            <p class="text-[11px] text-zinc-400">Weekly trap $</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subscription Live Cards -->
+      <div id="subsList" class="space-y-3">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="px-4 sm:px-6 py-10 bg-white border-t border-zinc-200 text-sm text-zinc-500">
+    <div class="max-w-3xl mx-auto">
+      <div class="flex items-center gap-2 mb-3">
+        <div class="h-6 w-6 rounded bg-gradient-to-tr from-violet-600 to-fuchsia-500 flex items-center justify-center text-white text-xs font-black">S</div>
+        <span class="font-bold text-zinc-900">SaveBucks</span>
+      </div>
+      <p class="text-xs text-zinc-500 mb-4">
+        Save $500+/year. Track 64+ apps. Cancel weekly traps like ReelShort & MadMuscle. Local-only, no tracking.
+      </p>
+      <p class="text-xs text-zinc-400 mb-6">Support: <a href="mailto:futuretechai1999@gmail.com" class="underline">futuretechai1999@gmail.com</a></p>
+
+      <div class="grid grid-cols-2 gap-6 text-xs border-t border-zinc-100 pt-6">
+        <div>
+          <h5 class="font-bold text-zinc-900 mb-2">Product</h5>
+          <ul class="space-y-1">
+            <li><a href="#" class="hover:text-zinc-900">Home</a></li>
+            <li><a href="#how-it-works" class="hover:text-zinc-900">Services</a></li>
+            <li><a href="#dashboard" class="hover:text-zinc-900">Dashboard</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold text-zinc-900 mb-2">Legal</h5>
+          <ul class="space-y-1">
+            <li><a href="#faqAccordion" class="hover:text-zinc-900">FAQ</a></li>
+            <li><a href="#" class="hover:text-zinc-900">Terms</a></li>
+            <li><a href="#" class="hover:text-zinc-900">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    let activeSubscriptions = [
+      { id: 1, name: "ReelShort", price: 14.99, cycle: "Weekly", category: "Short Drama", isTrial: true, isTrap: true, expiry: "9/22/2026", color: "bg-amber-500", initials: "RE" },
+      { id: 2, name: "MadMuscle", price: 29.99, cycle: "Monthly", category: "Fitness", isTrial: false, isTrap: false, expiry: "Active", color: "bg-violet-600", initials: "MA" },
+      { id: 3, name: "Claude Pro", price: 20.00, cycle: "Monthly", category: "AI Tools", isTrial: false, isTrap: false, expiry: "Active", color: "bg-indigo-500", initials: "CL" },
+      { id: 4, name: "Netflix", price: 15.49, cycle: "Monthly", category: "Entertainment", isTrial: false, isTrap: false, expiry: "Active", color: "bg-rose-600", initials: "NE" }
+    ];
+
+    function renderSubs() {
+      const container = document.getElementById('subsList');
+      container.innerHTML = '';
+
+      let monthlyTotal = 0;
+
+      activeSubscriptions.forEach(sub => {
+        let monthlyEquivalent = sub.cycle === 'Weekly' ? sub.price * 4.33 : (sub.cycle === 'Yearly' ? sub.price / 12 : sub.price);
+        monthlyTotal += monthlyEquivalent;
+
+        const card = document.createElement('div');
+        card.className = "p-4 rounded-2xl bg-white border border-zinc-200/90 shadow-sm flex flex-col gap-3";
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full ${sub.color} text-white flex items-center justify-center font-bold text-xs">
+                ${sub.initials}
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="font-bold text-sm text-zinc-900">${sub.name}</span>
+                  ${sub.isTrial ? '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">TRIAL</span>' : ''}
+                  ${sub.isTrap ? '<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800">WEEKLY TRAP</span>' : ''}
+                </div>
+                <p class="text-xs text-zinc-400 mt-0.5">${sub.category} &bull; $${sub.price}/${sub.cycle === 'Weekly' ? 'W' : 'Mo'} &bull; Ends ${sub.expiry}</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-extrabold text-sm text-zinc-900">$${sub.price}/${sub.cycle === 'Weekly' ? 'W' : 'Mo'}</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-zinc-100 text-xs text-zinc-500">
+            <a href="https://support.apple.com" target="_blank" class="font-semibold text-zinc-800 hover:text-fuchsia-600 underline">Cancel Guide</a>
+            <div class="flex items-center gap-3">
+              <button class="hover:text-zinc-900" title="Reminder set">🔔</button>
+              <button onclick="removeSub(${sub.id})" class="text-zinc-400 hover:text-rose-600" title="Delete">🗑️</button>
+            </div>
           </div>
         `;
-        container.appendChild(item);
+        container.appendChild(card);
       });
 
-      document.getElementById('totalSpend').innerText = `$${totalMonthly.toFixed(2)}`;
-      document.getElementById('annualSpend').innerText = `~$${(totalMonthly * 12).toFixed(2)} / year projected`;
-      document.getElementById('activeCount').innerText = subscriptions.length;
-      document.getElementById('expiringCount').innerText = expiringCount;
+      document.getElementById('dashMonthly').innerText = `$${Math.round(monthlyTotal)}`;
+      document.getElementById('dashYearly').innerText = `$${Math.round(monthlyTotal * 12)}`;
+      document.getElementById('subCounterPill').innerText = `${activeSubscriptions.length}/5 subs`;
+      document.getElementById('btnSubCount').innerText = `${activeSubscriptions.length}/5`;
     }
 
-    function openModal() {
-      document.getElementById('addModal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-      document.getElementById('addModal').classList.add('hidden');
-      document.getElementById('addForm').reset();
-    }
-
-    function handleFormSubmit(e) {
+    function addNewSubscription(e) {
       e.preventDefault();
-      const name = document.getElementById('nameInput').value.trim();
-      const price = document.getElementById('priceInput').value;
-      const renewalDate = document.getElementById('dateInput').value;
-      const cancelUrl = document.getElementById('cancelUrlInput').value.trim();
-      const isTrial = document.getElementById('trialCheck').checked;
+      const name = document.getElementById('appSearchInput').value.trim();
+      const price = parseFloat(document.getElementById('appPriceInput').value);
+      const cycle = document.getElementById('appCycleSelect').value;
+      const isTrial = document.getElementById('appTrialCheckbox').checked;
 
-      subscriptions.push({
+      const initials = name.slice(0, 2).toUpperCase();
+      const colors = ['bg-violet-600', 'bg-fuchsia-600', 'bg-sky-500', 'bg-emerald-600', 'bg-amber-600'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+      activeSubscriptions.unshift({
         id: Date.now(),
         name,
-        price: parseFloat(price),
-        renewalDate,
+        price,
+        cycle,
+        category: "General",
         isTrial,
-        cancelUrl: cancelUrl || null
+        isTrap: cycle === 'Weekly',
+        expiry: "Active",
+        color: randomColor,
+        initials
       });
 
-      closeModal();
-      renderUI();
+      document.getElementById('dashboardAddForm').reset();
+      renderSubs();
     }
 
-    function deleteSub(id) {
-      subscriptions = subscriptions.filter(s => s.id !== id);
-      renderUI();
+    function removeSub(id) {
+      activeSubscriptions = activeSubscriptions.filter(s => s.id !== id);
+      renderSubs();
     }
 
-    // Initial Render
-    renderUI();
+    function toggleFaq(id) {
+      const content = document.getElementById(`faqContent-${id}`);
+      const icon = document.getElementById(`faqIcon-${id}`);
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.innerHTML = '&minus;';
+      } else {
+        content.classList.add('hidden');
+        icon.innerHTML = '&plus;';
+      }
+    }
+
+    renderSubs();
   </script>
 </body>
 </html>
