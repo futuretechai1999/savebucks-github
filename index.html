@@ -12,6 +12,7 @@
     .btn-gradient { background: linear-gradient(90deg, #38bdf8 0%, #ec4899 100%); }
     .btn-gradient:hover { opacity: 0.9; }
     .card-bg { background-color: #111827; border: 1px solid #1f2937; }
+    .modal-backdrop { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px); }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -20,13 +21,15 @@
   <header class="border-b border-gray-800 bg-[#0b0f17]/90 sticky top-0 z-40 backdrop-blur">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-2">
-        <span class="text-2xl font-black italic tracking-wider brand-gradient">SaveBucks</span>
+        <a href="#" class="text-2xl font-black italic tracking-wider brand-gradient">SaveBucks</a>
       </div>
       <nav class="hidden md:flex items-center space-x-6 text-sm text-gray-300">
         <a href="#search" class="hover:text-white transition">Search Apps</a>
-        <a href="#services" class="hover:text-white transition">Services</a>
-        <a href="#pricing" class="hover:text-white transition">Pricing</a>
+        <a href="#services" class="hover:text-white transition">Features</a>
         <a href="#dashboard" class="hover:text-white transition">Dashboard</a>
+        <a href="#pricing" class="hover:text-white transition">Pricing</a>
+        <a href="#faq" class="hover:text-white transition">FAQ</a>
+        <button onclick="openModal('manualModal')" class="hover:text-white transition text-cyan-400">User Manual</button>
       </nav>
       <a href="#dashboard" class="btn-gradient text-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg transition">Start Tracking</a>
     </div>
@@ -73,20 +76,20 @@
       <div class="card-bg p-6 rounded-2xl border border-gray-800 shadow-2xl relative">
         <div class="flex items-center justify-between mb-3">
           <label class="text-xs uppercase font-bold text-gray-400 tracking-wider">Universal App & Subscription Lookup</label>
-          <span class="text-xs text-cyan-400 font-medium">Instant Cancel Guides</span>
+          <span class="text-xs text-cyan-400 font-medium">Multi-Platform Cancel Links</span>
         </div>
         <div class="relative">
           <input 
             type="text" 
             id="searchInput" 
-            placeholder="Type any app (Netflix, Claude Pro, ReelShort, Prime, Spotify, MadMuscle)..."
+            placeholder="Type any app (Netflix, Claude, ReelShort, Prime, Spotify, MadMuscle)..."
             class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition"
             oninput="handleSearch()"
           />
           <button onclick="handleSearch()" class="absolute right-2 top-2 btn-gradient text-white text-xs font-semibold px-4 py-2 rounded-lg">Check</button>
         </div>
 
-        <!-- Autocomplete Suggestions Dropdown -->
+        <!-- Autocomplete Suggestions -->
         <div id="suggestions" class="hidden absolute left-0 right-0 top-full mt-2 bg-gray-900 border border-gray-700 rounded-xl shadow-2xl overflow-hidden z-30 max-h-60 overflow-y-auto"></div>
       </div>
 
@@ -102,8 +105,8 @@
           <p class="text-xs text-gray-400 mt-1">Track 5 free, unlimited Pro • Support: futuretechai1999@gmail.com</p>
         </div>
         <div class="flex items-center gap-2">
-          <a href="#pricing" class="btn-gradient text-white text-xs font-semibold px-4 py-2 rounded-lg">Monthly $5/mo</a>
-          <a href="#pricing" class="bg-gray-800 hover:bg-gray-700 text-xs px-4 py-2 rounded-lg border border-gray-700 text-gray-200 transition font-medium">$29/yr • $59 Lifetime</a>
+          <button onclick="openCheckout('Monthly', 5)" class="btn-gradient text-white text-xs font-semibold px-4 py-2 rounded-lg">Monthly $5/mo</button>
+          <button onclick="openCheckout('Yearly', 29)" class="bg-gray-800 hover:bg-gray-700 text-xs px-4 py-2 rounded-lg border border-gray-700 text-gray-200 transition font-medium">$29/yr • $59 Lifetime</button>
         </div>
       </div>
 
@@ -173,7 +176,7 @@
         <div class="card-bg p-6 rounded-2xl">
           <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">1</span>
           <h3 class="text-lg font-bold text-white">1-Click Cancel Guides</h3>
-          <p class="text-xs text-gray-400 mt-1">No more dark patterns. Exact steps and direct links for each app.</p>
+          <p class="text-xs text-gray-400 mt-1">Direct deep links for Web, Apple ID, and Google Play Store.</p>
         </div>
         <div class="card-bg p-6 rounded-2xl">
           <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">S</span>
@@ -188,19 +191,19 @@
       </div>
     </section>
 
-    <!-- Why We Built SaveBucks -->
+    <!-- Why We Built SaveBucks (About Us) -->
     <section id="why-built" class="card-bg p-8 rounded-3xl border border-gray-800">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
         <h2 class="text-2xl font-black text-white">Why We Built SaveBucks</h2>
         <div class="md:col-span-2 text-sm text-gray-400 space-y-3 leading-relaxed">
           <p>We got charged $130/month by MadMuscle. We thought it was $29.99/month. It was $29.99/week. No warning.</p>
           <p>App Store pricing shows dozens of apps doing the same: ReelShort $14.99/week = $65/mo, DramaBox $12.99/week = $56/mo, JustFit $12.99/week. Fitness and drama apps are the worst — hard to cancel, weekly billed, easy to forget.</p>
-          <p class="text-white font-medium">Our mission: make the true monthly cost obvious, give you the exact cancel path, and help you switch to cheaper tools. Save $500–$1200/year without spreadsheets.</p>
+          <p class="text-white font-medium">Our mission: make the true monthly cost obvious, give you the exact cancel path on iOS, Android & Web, and help you switch to cheaper tools. Save $500–$1200/year without spreadsheets.</p>
         </div>
       </div>
     </section>
 
-    <!-- Real Examples Breakdown -->
+    <!-- Waste Breakdown (Real examples) -->
     <section>
       <h2 class="text-2xl font-black text-white">Waste Breakdown (Real examples)</h2>
       <p class="text-xs text-gray-400 mt-1 mb-6">Source: App Store pricing. Weekly traps converted to monthly (x4.33).</p>
@@ -210,28 +213,28 @@
             <div class="font-bold text-white text-sm">ReelShort • $14.99/week → $65/mo</div>
             <div class="text-xs text-gray-400">$52/mo App Store only, $65 with fees</div>
           </div>
-          <button onclick="quickLookup('ReelShort')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Guide</button>
+          <button onclick="quickLookup('ReelShort')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Options</button>
         </div>
         <div class="card-bg p-4 rounded-xl flex items-center justify-between">
           <div>
             <div class="font-bold text-white text-sm">MadMuscle • $29.99/week → $130/mo</div>
             <div class="text-xs text-gray-400">$120/mo fitness avg, hard cancel</div>
           </div>
-          <button onclick="quickLookup('MadMuscle')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Guide</button>
+          <button onclick="quickLookup('MadMuscle')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Options</button>
         </div>
         <div class="card-bg p-4 rounded-xl flex items-center justify-between">
           <div>
             <div class="font-bold text-white text-sm">DramaBox • $12.99/week → $56/mo</div>
             <div class="text-xs text-gray-400">Drama short-form trap</div>
           </div>
-          <button onclick="quickLookup('DramaBox')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Guide</button>
+          <button onclick="quickLookup('DramaBox')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Options</button>
         </div>
         <div class="card-bg p-4 rounded-xl flex items-center justify-between">
           <div>
             <div class="font-bold text-white text-sm">Adobe Creative Cloud • $54.99/mo</div>
-            <div class="text-xs text-gray-400">High monthly commitment</div>
+            <div class="text-xs text-gray-400">High commitment design plan</div>
           </div>
-          <button onclick="quickLookup('Adobe')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Switch to Figma+Canva save $30/mo</button>
+          <button onclick="quickLookup('Adobe')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Switch to Figma/Canva save $30/mo</button>
         </div>
       </div>
     </section>
@@ -257,7 +260,7 @@
               <li>✓ Trial reminders & export</li>
             </ul>
           </div>
-          <button class="w-full mt-6 py-2.5 rounded-xl border border-gray-700 bg-gray-900 text-xs font-semibold hover:bg-gray-800 transition">Monthly $5/mo</button>
+          <button onclick="openCheckout('Monthly Pro', 5)" class="w-full mt-6 py-2.5 rounded-xl border border-gray-700 bg-gray-900 text-xs font-semibold hover:bg-gray-800 transition text-white">Subscribe $5/mo</button>
         </div>
 
         <div class="card-bg p-6 rounded-2xl border-2 border-purple-500 relative flex flex-col justify-between shadow-xl shadow-purple-900/20">
@@ -273,7 +276,7 @@
               <li>✓ Early new apps & guides</li>
             </ul>
           </div>
-          <button class="w-full mt-6 py-2.5 rounded-xl btn-gradient text-white text-xs font-bold">Yearly $29/yr - Popular</button>
+          <button onclick="openCheckout('Yearly Pro', 29)" class="w-full mt-6 py-2.5 rounded-xl btn-gradient text-white text-xs font-bold">Get Yearly $29/yr</button>
         </div>
 
         <div class="card-bg p-6 rounded-2xl flex flex-col justify-between">
@@ -288,115 +291,255 @@
               <li>✓ Best Value - Save $200+ long term</li>
             </ul>
           </div>
-          <button class="w-full mt-6 py-2.5 rounded-xl border border-gray-700 bg-gray-900 text-xs font-semibold hover:bg-gray-800 transition">Lifetime $59 - Best Value</button>
+          <button onclick="openCheckout('Lifetime Deal', 59)" class="w-full mt-6 py-2.5 rounded-xl border border-gray-700 bg-gray-900 text-xs font-semibold hover:bg-gray-800 transition text-white">Buy Lifetime $59</button>
         </div>
       </div>
     </section>
 
-    <!-- Reviews / Social Proof -->
-    <section>
-      <h2 class="text-2xl font-black text-white">What Users Say</h2>
-      <p class="text-xs text-gray-400 mt-1 mb-6">Real savings from early users. Stars + saved amounts.</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="card-bg p-5 rounded-2xl">
-          <div class="flex justify-between items-center text-xs text-amber-400 mb-2">
-            <span>★★★★★</span>
-            <span class="bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded text-[11px]">Saved $780/yr</span>
+    <!-- FAQ Section (Accordion) -->
+    <section id="faq" class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-black text-white text-center mb-8">Frequently Asked Questions</h2>
+      <div class="space-y-3">
+        <div class="card-bg rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-semibold text-sm text-white flex justify-between items-center">
+            How does SaveBucks work?
+            <span id="faq-icon-1">+</span>
+          </button>
+          <div id="faq-answer-1" class="hidden px-4 pb-4 text-xs text-gray-400 border-t border-gray-800/60 pt-3">
+            Add your subscriptions manually or find them via our universal directory. We convert hidden weekly pricing into true monthly expense, flag duplicate apps, and give you 1-click cancel deep links for iOS, Android, and Web.
           </div>
-          <p class="text-xs text-gray-300">"ReelShort was charging me $14.99/week. I thought it was monthly! SaveBucks flagged it instantly."</p>
-          <div class="text-[11px] text-gray-500 mt-3 font-semibold">Jessica T.</div>
         </div>
-        <div class="card-bg p-5 rounded-2xl">
-          <div class="flex justify-between items-center text-xs text-amber-400 mb-2">
-            <span>★★★★★</span>
-            <span class="bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded text-[11px]">Saved $1,450/yr</span>
+
+        <div class="card-bg rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-semibold text-sm text-white flex justify-between items-center">
+            Is my personal & financial data safe?
+            <span id="faq-icon-2">+</span>
+          </button>
+          <div id="faq-answer-2" class="hidden px-4 pb-4 text-xs text-gray-400 border-t border-gray-800/60 pt-3">
+            Yes, 100%! We NEVER ask for your bank login, credit card numbers, or passwords. All calculations run safely right inside your browser.
           </div>
-          <p class="text-xs text-gray-300">"MadMuscle at $29.99/week is insane. Canceled in 2 mins with their guide. Best tool ever."</p>
-          <div class="text-[11px] text-gray-500 mt-3 font-semibold">Mark R.</div>
         </div>
-        <div class="card-bg p-5 rounded-2xl">
-          <div class="flex justify-between items-center text-xs text-amber-400 mb-2">
-            <span>★★★★★</span>
-            <span class="bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded text-[11px]">Saved $420/yr</span>
+
+        <div class="card-bg rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-semibold text-sm text-white flex justify-between items-center">
+            What is the free limit?
+            <span id="faq-icon-3">+</span>
+          </button>
+          <div id="faq-answer-3" class="hidden px-4 pb-4 text-xs text-gray-400 border-t border-gray-800/60 pt-3">
+            You can track up to 5 subscriptions completely free forever. Upgrading to Pro gives you unlimited tracking, trial ending alerts, and export tools.
           </div>
-          <p class="text-xs text-gray-300">"Found 3 duplicate fitness apps. Now just using one. Dashboard is so clean."</p>
-          <div class="text-[11px] text-gray-500 mt-3 font-semibold">Priya S.</div>
+        </div>
+
+        <div class="card-bg rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(4)" class="w-full p-4 text-left font-semibold text-sm text-white flex justify-between items-center">
+            How do I cancel weekly traps like ReelShort or MadMuscle?
+            <span id="faq-icon-4">+</span>
+          </button>
+          <div id="faq-answer-4" class="hidden px-4 pb-4 text-xs text-gray-400 border-t border-gray-800/60 pt-3">
+            Search for the app in our directory and tap 'Cancel Options'. You will get direct deep links that instantly open your Apple ID Subscriptions page or Google Play Subscriptions screen.
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-gray-800 py-8 bg-[#0b0f17] text-xs text-gray-500 text-center">
-    <p>© 2026 SaveBucks. All rights reserved. Stop paying for forgotten subscriptions.</p>
+  <footer class="border-t border-gray-800 py-10 bg-[#0b0f17] text-xs text-gray-500">
+    <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <span class="text-xl font-black italic tracking-wider brand-gradient">SaveBucks</span>
+        <p class="mt-2 text-gray-400">Stop paying for forgotten subscriptions and weekly traps.</p>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-2 uppercase tracking-wider text-[11px]">Product</h4>
+        <ul class="space-y-1 text-gray-400">
+          <li><a href="#" class="hover:text-white">Home</a></li>
+          <li><a href="#services" class="hover:text-white">Services</a></li>
+          <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+          <li><a href="#dashboard" class="hover:text-white">Dashboard</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-2 uppercase tracking-wider text-[11px]">Legal & Help</h4>
+        <ul class="space-y-1 text-gray-400">
+          <li><button onclick="openModal('termsModal')" class="hover:text-white">Terms of Service</button></li>
+          <li><button onclick="openModal('privacyModal')" class="hover:text-white">Privacy Policy</button></li>
+          <li><button onclick="openModal('manualModal')" class="hover:text-white">User Manual & Guide</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-white mb-2 uppercase tracking-wider text-[11px]">Support</h4>
+        <p class="text-gray-400">Email: futuretechai1999@gmail.com</p>
+        <p class="text-gray-400 mt-1">Payments verified via LemonSqueezy</p>
+      </div>
+    </div>
+    <div class="text-center mt-8 border-t border-gray-900 pt-6">
+      © 2026 SaveBucks. All rights reserved.
+    </div>
   </footer>
 
+  <!-- MODAL: Cancel Options (Web / iOS / Android) -->
+  <div id="cancelModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+    <div class="card-bg p-6 rounded-2xl max-w-lg w-full border border-gray-700 shadow-2xl relative">
+      <button onclick="closeModal('cancelModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
+      <h3 class="text-xl font-bold text-white" id="modalAppName">Cancel Subscription</h3>
+      <p class="text-xs text-gray-400 mt-1">Choose where you purchased this subscription to cancel instantly:</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-5">
+        <a id="appleCancelLink" href="https://apps.apple.com/account/subscriptions" target="_blank" class="p-3 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-xl text-center transition">
+          <div class="text-xs font-bold text-white">Apple iOS</div>
+          <div class="text-[10px] text-gray-400 mt-0.5">App Store ↗</div>
+        </a>
+        <a id="playCancelLink" href="https://play.google.com/store/account/subscriptions" target="_blank" class="p-3 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-xl text-center transition">
+          <div class="text-xs font-bold text-white">Google Play</div>
+          <div class="text-[10px] text-gray-400 mt-0.5">Android ↗</div>
+        </a>
+        <a id="webCancelLink" href="#" target="_blank" class="p-3 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-xl text-center transition">
+          <div class="text-xs font-bold text-white">Direct Website</div>
+          <div class="text-[10px] text-cyan-400 mt-0.5">Web Billing ↗</div>
+        </a>
+      </div>
+
+      <div class="mt-5">
+        <div class="text-xs uppercase font-bold text-gray-400 mb-1">Step-by-Step Instructions</div>
+        <pre id="modalSteps" class="bg-gray-900/90 p-4 rounded-xl text-xs text-gray-300 whitespace-pre-line border border-gray-800 font-sans"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Payment / LemonSqueezy Checkout -->
+  <div id="paymentModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+    <div class="card-bg p-6 rounded-2xl max-w-md w-full border border-purple-500/50 shadow-2xl relative">
+      <button onclick="closeModal('paymentModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
+      <div class="text-xs font-bold text-purple-400 uppercase tracking-wider">LemonSqueezy Secure Checkout</div>
+      <h3 class="text-2xl font-black text-white mt-1" id="checkoutPlanName">Pro Plan</h3>
+      <div class="text-3xl font-extrabold text-white mt-2" id="checkoutPrice">$29</div>
+
+      <div class="mt-4 space-y-3">
+        <input type="email" id="checkoutEmail" placeholder="Enter your email address" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
+        <button onclick="processFakePayment()" class="w-full btn-gradient text-white text-sm font-bold py-3.5 rounded-xl shadow">Proceed to Payment</button>
+        <p class="text-[11px] text-gray-400 text-center">To link your live LemonSqueezy store, add your store checkout URL.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: User Manual -->
+  <div id="manualModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+    <div class="card-bg p-6 rounded-2xl max-w-lg w-full border border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+      <button onclick="closeModal('manualModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
+      <h3 class="text-xl font-bold text-white mb-3">SaveBucks — User Manual</h3>
+      <div class="text-xs text-gray-300 space-y-3 leading-relaxed">
+        <p><strong>1. How to search an app:</strong> Type any service name into the top search bar. Instant suggestions will display pricing tiers and direct cancel paths.</p>
+        <p><strong>2. How to cancel a subscription:</strong> Click on 'Cancel Options'. Choose whether you subscribed via Apple App Store, Google Play Store, or Web site to open the exact cancellation page.</p>
+        <p><strong>3. Using the Dashboard:</strong> You can add up to 5 apps for free. Weekly charges (like $14.99/week) are automatically multiplied by 4.33 so you can see your true monthly spend.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Terms of Service -->
+  <div id="termsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+    <div class="card-bg p-6 rounded-2xl max-w-lg w-full border border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+      <button onclick="closeModal('termsModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
+      <h3 class="text-xl font-bold text-white mb-3">Terms of Service</h3>
+      <div class="text-xs text-gray-300 space-y-2 leading-relaxed">
+        <p>By using SaveBucks, you acknowledge that SaveBucks provides directory links and estimation calculators for informational purposes.</p>
+        <p>SaveBucks is not directly affiliated with Apple, Google, Netflix, or any third-party app mentioned on this platform.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Privacy Policy -->
+  <div id="privacyModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
+    <div class="card-bg p-6 rounded-2xl max-w-lg w-full border border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+      <button onclick="closeModal('privacyModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
+      <h3 class="text-xl font-bold text-white mb-3">Privacy Policy</h3>
+      <div class="text-xs text-gray-300 space-y-2 leading-relaxed">
+        <p>We respect your privacy. SaveBucks operates client-side and does NOT collect or store your bank accounts, credit card numbers, or passwords.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Local app directory
+    // Universal Database with Web, iOS & Android Cancel Links
     const appsDB = [
       {
         name: "Netflix",
         category: "Streaming",
-        plans: "Mobile ($6.99), Standard ($15.49/mo), Premium ($22.99/mo)",
-        cancelUrl: "https://www.netflix.com/youraccount",
-        steps: "1. Go to netflix.com/youraccount\n2. Under 'Membership & Billing', click 'Cancel Membership'.\n3. Click 'Finish Cancellation' to stop renewal."
+        plans: "Standard ($15.49/mo), Premium ($22.99/mo)",
+        webCancel: "https://www.netflix.com/youraccount",
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. For Web: Log in -> Account -> Click 'Cancel Membership'.\n2. For Apple: Settings -> Apple ID -> Subscriptions -> Netflix -> Cancel.\n3. For Android: Google Play -> Profile -> Subscriptions -> Cancel."
       },
       {
         name: "Claude Pro",
         category: "AI Tool",
         plans: "$20/month ($240/year)",
-        cancelUrl: "https://claude.ai/settings/billing",
-        steps: "1. Log into claude.ai.\n2. Tap your Avatar at bottom-left -> Settings.\n3. Navigate to Billing -> Click 'Cancel Subscription'."
+        webCancel: "https://claude.ai/settings/billing",
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. Log into claude.ai.\n2. Tap Avatar (bottom left) -> Settings -> Billing.\n3. Click 'Cancel Subscription'."
       },
       {
         name: "ChatGPT Plus",
         category: "AI Tool",
         plans: "$20/month",
-        cancelUrl: "https://chatgpt.com/#settings",
-        steps: "1. Open chatgpt.com -> Profile -> Settings.\n2. Tap 'Manage My Subscription'.\n3. In the Stripe customer portal, tap 'Cancel Plan'."
+        webCancel: "https://chatgpt.com/#settings",
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. Open chatgpt.com -> Profile -> Settings.\n2. Tap 'Manage My Subscription'.\n3. Click 'Cancel Plan' in the Stripe billing portal."
       },
       {
         name: "ReelShort",
         category: "Micro Drama Trap",
         plans: "$14.99/week ($65/mo trap!)",
-        cancelUrl: "https://apps.apple.com/account/subscriptions",
-        steps: "1. Open iPhone Settings -> Tap your Name at top.\n2. Tap 'Subscriptions'.\n3. Select ReelShort -> Tap 'Cancel Subscription'."
+        webCancel: "https://www.reelshort.com",
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. For iPhone: Open iOS Settings -> Apple ID -> Subscriptions -> ReelShort -> Cancel.\n2. For Android: Open Google Play -> Profile -> Payments & Subscriptions -> Cancel."
       },
       {
         name: "MadMuscle",
         category: "Fitness Trap",
         plans: "$29.99/week ($130/mo trap!)",
-        cancelUrl: "https://apps.apple.com/account/subscriptions",
-        steps: "1. If subscribed via iOS: Settings -> Apple ID -> Subscriptions -> MadMuscle -> Cancel.\n2. If via Web: Log into madmuscle.com -> Profile -> Manage Subscription -> Cancel."
+        webCancel: "https://madmuscle.com/login",
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. If bought via Web: Visit madmuscle.com/login -> Account -> Subscriptions -> Cancel.\n2. If bought via iPhone: Settings -> Apple ID -> Subscriptions -> MadMuscle -> Cancel."
       },
       {
         name: "DramaBox",
         category: "Micro Drama Trap",
         plans: "$12.99/week ($56/mo trap!)",
-        cancelUrl: "https://apps.apple.com/account/subscriptions",
-        steps: "1. Open Apple App Store or Google Play Store.\n2. Go to Subscriptions -> DramaBox -> Cancel Subscription."
+        webCancel: "https://www.storymatrix.com",
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. Open iOS Settings or Google Play Store.\n2. Go to Subscriptions -> DramaBox -> Cancel Subscription."
       },
       {
         name: "Amazon Prime",
         category: "Shopping & Streaming",
         plans: "$14.99/mo or $139/yr",
-        cancelUrl: "https://www.amazon.com/mc/manage",
-        steps: "1. Visit amazon.com/mc/manage.\n2. Click 'Manage Membership' -> 'End Membership'."
+        webCancel: "https://www.amazon.com/mc/manage",
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. Go to amazon.com/mc/manage.\n2. Tap 'Manage Membership' -> 'End Membership'."
       },
       {
         name: "Adobe Creative Cloud",
         category: "Design Software",
         plans: "$54.99/month",
-        cancelUrl: "https://account.adobe.com/plans",
-        steps: "1. Go to account.adobe.com/plans.\n2. Select 'Manage Plan' on Creative Cloud.\n3. Click 'Cancel your plan'."
+        webCancel: "https://account.adobe.com/plans",
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. Go to account.adobe.com/plans.\n2. Click 'Manage Plan' under Creative Cloud -> 'Cancel your plan'."
       }
     ];
 
-    // Universal Search Handler
+    // Search Engine Logic
     function handleSearch() {
       const q = document.getElementById('searchInput').value.trim().toLowerCase();
       const drop = document.getElementById('suggestions');
-      const box = document.getElementById('searchResult');
 
       if (!q) {
         drop.classList.add('hidden');
@@ -414,10 +557,9 @@
         `).join('');
         drop.classList.remove('hidden');
       } else {
-        // Dynamic fallback for any app entered
         drop.innerHTML = `
           <div onclick="selectCustomApp('${q}')" class="px-4 py-3 hover:bg-gray-800 cursor-pointer text-xs text-rose-400">
-            Show universal cancellation guide for "${q}" →
+            Show universal multi-platform cancel options for "${q}" →
           </div>
         `;
         drop.classList.remove('hidden');
@@ -435,18 +577,19 @@
       const title = name.charAt(0).toUpperCase() + name.slice(1);
       displayAppDetails({
         name: title,
-        category: "Subscription App",
-        plans: "Standard in-app/web subscription rates apply",
-        cancelUrl: "https://apps.apple.com/account/subscriptions",
-        steps: "1. For iOS: Open Settings -> Apple ID -> Subscriptions -> " + title + " -> Cancel.\n2. For Android: Open Google Play -> Profile -> Payments & Subscriptions -> Cancel.\n3. For Web: Log into " + title + " settings -> Billing -> Cancel Membership."
+        category: "Subscription Service",
+        plans: "Standard subscription pricing applies",
+        webCancel: "https://www.google.com/search?q=how+to+cancel+" + encodeURIComponent(title),
+        appleCancel: "https://apps.apple.com/account/subscriptions",
+        playCancel: "https://play.google.com/store/account/subscriptions",
+        steps: "1. Apple iOS: Settings -> Apple ID -> Subscriptions -> Select " + title + " -> Cancel.\n2. Google Android: Google Play Store -> Profile -> Subscriptions -> Cancel.\n3. Web: Log in to " + title + " -> Settings / Billing -> Cancel."
       });
     }
 
     function quickLookup(name) {
       const app = appsDB.find(a => a.name.toLowerCase().includes(name.toLowerCase()));
       if (app) {
-        displayAppDetails(app);
-        window.location.hash = '#search';
+        openCancelModal(app);
       }
     }
 
@@ -463,15 +606,24 @@
             <div class="text-xs text-gray-400 mt-1">Available Plans: <span class="text-white font-medium">${app.plans}</span></div>
           </div>
           <div class="flex items-center gap-2">
-            <a href="${app.cancelUrl}" target="_blank" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition">Cancel Now ↗</a>
+            <button onclick='openCancelModal(${JSON.stringify(app)})' class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition">Cancel Options ↗</button>
             <button onclick="prefillDashboard('${app.name}')" class="px-3 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-xs text-gray-300 font-medium border border-gray-700">+ Add to Dashboard</button>
           </div>
         </div>
         <div class="mt-4">
-          <div class="text-xs uppercase font-bold text-gray-400 mb-1">Step-by-Step Cancellation Guide</div>
+          <div class="text-xs uppercase font-bold text-gray-400 mb-1">Cancellation Instructions:</div>
           <pre class="bg-gray-900/90 p-4 rounded-xl text-xs text-gray-300 whitespace-pre-line border border-gray-800 font-sans">${app.steps}</pre>
         </div>
       `;
+    }
+
+    function openCancelModal(app) {
+      document.getElementById('modalAppName').innerText = "Cancel " + app.name;
+      document.getElementById('appleCancelLink').href = app.appleCancel || "https://apps.apple.com/account/subscriptions";
+      document.getElementById('playCancelLink').href = app.playCancel || "https://play.google.com/store/account/subscriptions";
+      document.getElementById('webCancelLink').href = app.webCancel || "#";
+      document.getElementById('modalSteps').innerText = app.steps;
+      openModal('cancelModal');
     }
 
     function prefillDashboard(name) {
@@ -479,7 +631,45 @@
       window.location.hash = '#dashboard';
     }
 
-    // Dashboard State & Realtime Tracker
+    // Modal Control Functions
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    // FAQ Accordion Toggle
+    function toggleFaq(num) {
+      const ans = document.getElementById('faq-answer-' + num);
+      const icon = document.getElementById('faq-icon-' + num);
+      if (ans.classList.contains('hidden')) {
+        ans.classList.remove('hidden');
+        icon.innerText = "−";
+      } else {
+        ans.classList.add('hidden');
+        icon.innerText = "+";
+      }
+    }
+
+    // Checkout Flow Trigger
+    function openCheckout(planName, price) {
+      document.getElementById('checkoutPlanName').innerText = planName;
+      document.getElementById('checkoutPrice').innerText = "$" + price;
+      openModal('paymentModal');
+    }
+
+    function processFakePayment() {
+      const email = document.getElementById('checkoutEmail').value.trim();
+      if (!email || !email.includes('@')) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+      alert("Redirecting to LemonSqueezy secure payment gateway for: " + email);
+      closeModal('paymentModal');
+    }
+
+    // Dashboard Tracker Logic
     let userSubscriptions = [];
     const MAX_FREE_SUBS = 5;
 
@@ -525,7 +715,6 @@
       const addBtn = document.getElementById('addBtn');
       const count = userSubscriptions.length;
 
-      // Update counters
       countLabel.innerText = `${count}/5 subs • Free`;
       addBtn.innerText = `+ Add (${count}/5)`;
 
@@ -572,7 +761,7 @@
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="quickLookup('${sub.name}')" class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-200 px-3 py-1.5 rounded-lg border border-gray-700 font-medium">Cancel Guide</button>
+              <button onclick="quickLookup('${sub.name}')" class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-200 px-3 py-1.5 rounded-lg border border-gray-700 font-medium">Cancel Options</button>
               <button onclick="removeSubscription(${sub.id})" class="text-xs text-rose-400 hover:text-rose-300 px-2 py-1">Remove</button>
             </div>
           </div>
