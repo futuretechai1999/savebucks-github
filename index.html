@@ -1,130 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SaveBucks — Stop Paying for Subscriptions You Forgot</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #0b0f17; color: #f3f4f6; }
+    body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
     .brand-gradient { background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #f43f5e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .btn-gradient { background: linear-gradient(90deg, #38bdf8 0%, #ec4899 100%); }
     .btn-gradient:hover { opacity: 0.9; }
-    .card-bg { background-color: #111827; border: 1px solid #1f2937; }
-    .modal-backdrop { background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px); }
+    .modal-backdrop { background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-900 dark:bg-[#0b0f17] dark:text-[#f3f4f6]">
 
   <!-- Navbar -->
-  <header class="border-b border-gray-800 bg-[#0b0f17]/90 sticky top-0 z-40 backdrop-blur">
+  <header class="border-b border-slate-200 dark:border-gray-800 bg-white/90 dark:bg-[#0b0f17]/90 sticky top-0 z-40 backdrop-blur">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-2">
         <a href="#" class="text-2xl font-black italic tracking-wider brand-gradient">SaveBucks</a>
       </div>
-      <nav class="hidden md:flex items-center space-x-6 text-sm text-gray-300">
-        <a href="#search" class="hover:text-white transition">Search Apps</a>
-        <a href="#services" class="hover:text-white transition">Features</a>
-        <a href="#dashboard" class="hover:text-white transition">Dashboard</a>
-        <a href="#pricing" class="hover:text-white transition">Pricing</a>
-        <a href="#faq" class="hover:text-white transition">FAQ</a>
-        <button onclick="openModal('manualModal')" class="hover:text-white transition text-cyan-400">User Manual</button>
+      
+      <nav class="hidden md:flex items-center space-x-6 text-sm text-slate-600 dark:text-gray-300">
+        <a href="#search" class="hover:text-cyan-500 transition">Search Apps</a>
+        <a href="#services" class="hover:text-cyan-500 transition">Features</a>
+        <a href="#dashboard" class="hover:text-cyan-500 transition">Dashboard</a>
+        <a href="#pricing" class="hover:text-cyan-500 transition">Pricing</a>
+        <a href="#faq" class="hover:text-cyan-500 transition">FAQ</a>
+        <button onclick="openModal('manualModal')" class="hover:text-cyan-500 transition text-cyan-600 dark:text-cyan-400 font-medium">User Manual</button>
       </nav>
-      <a href="#dashboard" class="btn-gradient text-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg transition">Start Tracking</a>
+
+      <div class="flex items-center space-x-3">
+        <!-- Theme Toggle Button (Light / Dark / System) -->
+        <button onclick="cycleTheme()" id="themeBtn" title="Change Theme (Dark/Light/System)" class="p-2 rounded-full border border-slate-300 dark:border-gray-700 bg-slate-100 dark:bg-gray-800 text-slate-700 dark:text-amber-400 hover:scale-105 transition flex items-center justify-center">
+          <span id="themeIcon">☀️</span>
+        </button>
+
+        <a href="#dashboard" class="btn-gradient text-white text-xs md:text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg transition">Start Tracking</a>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <main class="max-w-5xl mx-auto px-4 py-12 flex-grow space-y-16">
     <div class="text-center space-y-5">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs bg-gray-800 text-gray-300 border border-gray-700">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Live tracking for 64+ apps • US users waste $1000/year
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs bg-slate-200 dark:bg-gray-800 text-slate-700 dark:text-gray-300 border border-slate-300 dark:border-gray-700">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live tracking for 64+ apps • US users waste $1000/year
       </div>
       <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">
         Stop Paying for <br/>
         <span class="brand-gradient">Subscriptions You Forgot</span>
       </h1>
-      <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+      <p class="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
         Track 64+ apps like Claude Pro, ReelShort, MadMuscle $29.99/week ($120/mo). Save $500+/year. Find weekly traps, duplicate tools, and trial scams before they charge.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4 pt-2">
         <a href="#dashboard" class="btn-gradient text-white font-semibold text-sm px-6 py-3 rounded-full shadow-lg">Start Tracking Free — 5 Subs Free</a>
-        <a href="#why-built" class="bg-gray-800/80 hover:bg-gray-800 text-gray-200 text-sm font-semibold px-6 py-3 rounded-full border border-gray-700 transition">See How It Works</a>
+        <a href="#why-built" class="bg-slate-200 dark:bg-gray-800 hover:bg-slate-300 dark:hover:bg-gray-750 text-slate-800 dark:text-gray-200 text-sm font-semibold px-6 py-3 rounded-full border border-slate-300 dark:border-gray-700 transition">See How It Works</a>
       </div>
 
       <!-- Quick Metrics -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 max-w-3xl mx-auto text-center">
-        <div class="card-bg p-5 rounded-2xl">
-          <div class="text-3xl font-extrabold text-white">$1200+</div>
-          <div class="text-xs text-gray-400 mt-1">avg saved / yr</div>
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-2xl shadow-sm">
+          <div class="text-3xl font-extrabold text-slate-900 dark:text-white">$1200+</div>
+          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1">avg saved / yr</div>
         </div>
-        <div class="card-bg p-5 rounded-2xl">
-          <div class="text-3xl font-extrabold text-white">64+</div>
-          <div class="text-xs text-gray-400 mt-1">apps tracked</div>
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-2xl shadow-sm">
+          <div class="text-3xl font-extrabold text-slate-900 dark:text-white">64+</div>
+          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1">apps tracked</div>
         </div>
-        <div class="card-bg p-5 rounded-2xl">
-          <div class="text-3xl font-extrabold text-white">5000+</div>
-          <div class="text-xs text-gray-400 mt-1">users</div>
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-2xl shadow-sm">
+          <div class="text-3xl font-extrabold text-slate-900 dark:text-white">5000+</div>
+          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1">users</div>
         </div>
       </div>
     </div>
 
     <!-- Universal Search Section -->
     <section id="search" class="max-w-3xl mx-auto">
-      <div class="card-bg p-6 rounded-2xl border border-gray-800 shadow-2xl relative">
+      <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl border border-slate-200 dark:border-gray-800 shadow-xl relative">
         <div class="flex items-center justify-between mb-3">
-          <label class="text-xs uppercase font-bold text-gray-400 tracking-wider">Universal App & Subscription Lookup</label>
-          <span class="text-xs text-cyan-400 font-medium">Multi-Platform Cancel Links</span>
+          <label class="text-xs uppercase font-bold text-slate-500 dark:text-gray-400 tracking-wider">Universal App & Subscription Lookup</label>
+          <span class="text-xs text-cyan-600 dark:text-cyan-400 font-medium">Multi-Platform Cancel Links</span>
         </div>
         <div class="relative">
           <input 
             type="text" 
             id="searchInput" 
             placeholder="Type any app (Netflix, Claude, ReelShort, Prime, Spotify, MadMuscle)..."
-            class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition"
+            class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-xl px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition"
             oninput="handleSearch()"
           />
           <button onclick="handleSearch()" class="absolute right-2 top-2 btn-gradient text-white text-xs font-semibold px-4 py-2 rounded-lg">Check</button>
         </div>
 
         <!-- Autocomplete Suggestions -->
-        <div id="suggestions" class="hidden absolute left-0 right-0 top-full mt-2 bg-gray-900 border border-gray-700 rounded-xl shadow-2xl overflow-hidden z-30 max-h-60 overflow-y-auto"></div>
+        <div id="suggestions" class="hidden absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden z-30 max-h-60 overflow-y-auto"></div>
       </div>
 
       <!-- Live Search Detail Card -->
-      <div id="searchResult" class="hidden mt-6 card-bg p-6 rounded-2xl border border-cyan-800/40"></div>
+      <div id="searchResult" class="hidden mt-6 bg-white dark:bg-[#111827] p-6 rounded-2xl border border-cyan-500/30 dark:border-cyan-800/40 shadow-lg"></div>
     </section>
 
     <!-- Interactive User Dashboard -->
-    <section id="dashboard" class="card-bg p-6 md:p-8 rounded-3xl border border-gray-800">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-800 pb-5">
+    <section id="dashboard" class="bg-white dark:bg-[#111827] p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-gray-800 shadow-xl">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-gray-800 pb-5">
         <div>
-          <h2 class="text-2xl font-bold text-white">Dashboard</h2>
-          <p class="text-xs text-gray-400 mt-1">Track 5 free, unlimited Pro • Support: futuretechai1999@gmail.com</p>
+          <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Dashboard</h2>
+          <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Track 5 free, unlimited Pro • Support: futuretechai1999@gmail.com</p>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="openCheckout('Monthly', 5)" class="btn-gradient text-white text-xs font-semibold px-4 py-2 rounded-lg">Monthly $5/mo</button>
-          <button onclick="openCheckout('Yearly', 29)" class="bg-gray-800 hover:bg-gray-700 text-xs px-4 py-2 rounded-lg border border-gray-700 text-gray-200 transition font-medium">$29/yr • $59 Lifetime</button>
+          <!-- Direct LemonSqueezy Hosted Links -->
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/2adba7db-2b70-476a-b427-72944bad469c" target="_blank" class="btn-gradient text-white text-xs font-semibold px-4 py-2 rounded-lg inline-block">Monthly $5/mo</a>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/62d5af07-362f-475a-848a-d2b864881d74" target="_blank" class="bg-slate-100 dark:bg-gray-800 hover:bg-slate-200 dark:hover:bg-gray-700 text-xs px-4 py-2 rounded-lg border border-slate-300 dark:border-gray-700 text-slate-800 dark:text-gray-200 transition font-medium inline-block">$29/yr • $59 Lifetime</a>
         </div>
       </div>
 
       <!-- Add Subscription Input Bar -->
       <div class="mt-6">
-        <div class="flex justify-between items-center text-xs text-gray-400 font-semibold mb-2">
-          <span id="subsCountLabel">0/5 subs • Free</span>
-          <span class="text-rose-400">Weekly trap warning enabled</span>
+        <div class="flex justify-between items-center text-xs font-semibold mb-2">
+          <span id="subsCountLabel" class="text-slate-600 dark:text-gray-400">0/5 subs • Free</span>
+          <span class="text-rose-500 dark:text-rose-400">Weekly trap warning enabled</span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
           <div class="md:col-span-6">
-            <input type="text" id="newAppName" placeholder="Netflix, Claude Pro, ReelShort..." class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
+            <input type="text" id="newAppName" placeholder="Netflix, Claude Pro, ReelShort..." class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
           </div>
           <div class="md:col-span-2">
-            <input type="number" step="0.01" id="newAppCost" placeholder="9.99" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
+            <input type="number" step="0.01" id="newAppCost" placeholder="9.99" class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
           </div>
           <div class="md:col-span-2">
-            <select id="newAppCycle" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-3 py-3 text-sm text-white focus:outline-none focus:border-cyan-500">
+            <select id="newAppCycle" class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-xl px-3 py-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500">
               <option value="monthly">Monthly</option>
               <option value="weekly">Weekly</option>
               <option value="yearly">Yearly</option>
@@ -134,209 +148,166 @@
             <button onclick="addSubscription()" id="addBtn" class="w-full h-full btn-gradient text-white text-xs font-bold py-3 rounded-xl shadow">+ Add (0/5)</button>
           </div>
         </div>
-        <div class="text-[11px] text-gray-500 mt-2">Price entered • Weekly trap auto-converts (x4.33 to monthly)</div>
+        <div class="text-[11px] text-slate-500 dark:text-gray-400 mt-2">Price entered • Weekly trap auto-converts (x4.33 to monthly)</div>
       </div>
 
       <!-- Realtime Burn Metrics -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-        <div class="bg-white text-black p-5 rounded-2xl shadow">
-          <div class="text-xs uppercase font-extrabold tracking-wider text-gray-600">Monthly Burn</div>
+        <div class="bg-slate-900 text-white dark:bg-white dark:text-black p-5 rounded-2xl shadow">
+          <div class="text-xs uppercase font-extrabold tracking-wider text-slate-400 dark:text-gray-600">Monthly Burn</div>
           <div class="text-3xl font-black mt-2" id="burnMonthly">$0</div>
         </div>
-        <div class="bg-gray-900/90 p-5 rounded-2xl border border-gray-800">
-          <div class="text-xs uppercase font-semibold text-gray-400">Yearly Waste</div>
-          <div class="text-3xl font-extrabold text-white mt-2" id="burnYearly">$0</div>
+        <div class="bg-slate-100 dark:bg-gray-900/90 p-5 rounded-2xl border border-slate-200 dark:border-gray-800">
+          <div class="text-xs uppercase font-semibold text-slate-500 dark:text-gray-400">Yearly Waste</div>
+          <div class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2" id="burnYearly">$0</div>
         </div>
-        <div class="bg-[#1c1514] p-5 rounded-2xl border border-amber-900/40">
-          <div class="text-xs uppercase font-semibold text-amber-500">Weekly Trap $</div>
-          <div class="text-3xl font-extrabold text-amber-400 mt-2" id="burnWeeklyTrap">$0</div>
+        <div class="bg-amber-50 dark:bg-[#1c1514] p-5 rounded-2xl border border-amber-200 dark:border-amber-900/40">
+          <div class="text-xs uppercase font-semibold text-amber-600 dark:text-amber-500">Weekly Trap $</div>
+          <div class="text-3xl font-extrabold text-amber-600 dark:text-amber-400 mt-2" id="burnWeeklyTrap">$0</div>
         </div>
       </div>
 
       <!-- User Active Subscriptions List -->
       <div class="mt-8 space-y-3" id="userSubsList">
-        <div class="text-center py-8 text-gray-500 text-sm border border-dashed border-gray-800 rounded-2xl">
+        <div class="text-center py-8 text-slate-400 dark:text-gray-500 text-sm border border-dashed border-slate-300 dark:border-gray-800 rounded-2xl">
           No subscriptions added yet. Add an app above to calculate your burn!
         </div>
       </div>
     </section>
 
-    <!-- Everything You Need to Save -->
+    <!-- Services / Features Section -->
     <section id="services">
       <div class="text-center max-w-xl mx-auto mb-10">
-        <h2 class="text-3xl font-black text-white">Everything You Need to Save</h2>
-        <p class="text-xs text-gray-400 mt-2">Built for weekly-trap App Store pricing that hides true monthly cost.</p>
+        <h2 class="text-3xl font-black text-slate-900 dark:text-white">Everything You Need to Save</h2>
+        <p class="text-xs text-slate-500 dark:text-gray-400 mt-2">Built for weekly-trap App Store pricing that hides true monthly cost.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="card-bg p-6 rounded-2xl">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl">
           <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">A</span>
-          <h3 class="text-lg font-bold text-white">Auto-Detect Waste</h3>
-          <p class="text-xs text-gray-400 mt-1">Scans your weekly traps and duplicate tools in seconds.</p>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Auto-Detect Waste</h3>
+          <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Scans your weekly traps and duplicate tools in seconds.</p>
         </div>
-        <div class="card-bg p-6 rounded-2xl">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl">
           <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">1</span>
-          <h3 class="text-lg font-bold text-white">1-Click Cancel Guides</h3>
-          <p class="text-xs text-gray-400 mt-1">Direct deep links for Web, Apple ID, and Google Play Store.</p>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">1-Click Cancel Guides</h3>
+          <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Direct deep links for Web, Apple ID, and Google Play Store.</p>
         </div>
-        <div class="card-bg p-6 rounded-2xl">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl">
           <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">S</span>
-          <h3 class="text-lg font-bold text-white">Switch & Save</h3>
-          <p class="text-xs text-gray-400 mt-1">Cheaper alternatives that do the same job at half the price.</p>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Switch & Save</h3>
+          <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Cheaper alternatives that do the same job at half the price.</p>
         </div>
-        <div class="card-bg p-6 rounded-2xl">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl">
           <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">T</span>
-          <h3 class="text-lg font-bold text-white">Trial Alerts</h3>
-          <p class="text-xs text-gray-400 mt-1">Never get charged after a free trial ends.</p>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white">Trial Alerts</h3>
+          <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Never get charged after a free trial ends.</p>
         </div>
       </div>
     </section>
 
     <!-- Why We Built SaveBucks (About Us) -->
-    <section id="why-built" class="card-bg p-8 rounded-3xl border border-gray-800">
+    <section id="why-built" class="bg-white dark:bg-[#111827] p-8 rounded-3xl border border-slate-200 dark:border-gray-800">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-        <h2 class="text-2xl font-black text-white">Why We Built SaveBucks</h2>
-        <div class="md:col-span-2 text-sm text-gray-400 space-y-3 leading-relaxed">
+        <h2 class="text-2xl font-black text-slate-900 dark:text-white">Why We Built SaveBucks</h2>
+        <div class="md:col-span-2 text-sm text-slate-600 dark:text-gray-400 space-y-3 leading-relaxed">
           <p>We got charged $130/month by MadMuscle. We thought it was $29.99/month. It was $29.99/week. No warning.</p>
           <p>App Store pricing shows dozens of apps doing the same: ReelShort $14.99/week = $65/mo, DramaBox $12.99/week = $56/mo, JustFit $12.99/week. Fitness and drama apps are the worst — hard to cancel, weekly billed, easy to forget.</p>
-          <p class="text-white font-medium">Our mission: make the true monthly cost obvious, give you the exact cancel path on iOS, Android & Web, and help you switch to cheaper tools. Save $500–$1200/year without spreadsheets.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Waste Breakdown (Real examples) -->
-    <section>
-      <h2 class="text-2xl font-black text-white">Waste Breakdown (Real examples)</h2>
-      <p class="text-xs text-gray-400 mt-1 mb-6">Source: App Store pricing. Weekly traps converted to monthly (x4.33).</p>
-      <div class="space-y-3">
-        <div class="card-bg p-4 rounded-xl flex items-center justify-between">
-          <div>
-            <div class="font-bold text-white text-sm">ReelShort • $14.99/week → $65/mo</div>
-            <div class="text-xs text-gray-400">$52/mo App Store only, $65 with fees</div>
-          </div>
-          <button onclick="quickLookup('ReelShort')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Options</button>
-        </div>
-        <div class="card-bg p-4 rounded-xl flex items-center justify-between">
-          <div>
-            <div class="font-bold text-white text-sm">MadMuscle • $29.99/week → $130/mo</div>
-            <div class="text-xs text-gray-400">$120/mo fitness avg, hard cancel</div>
-          </div>
-          <button onclick="quickLookup('MadMuscle')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Options</button>
-        </div>
-        <div class="card-bg p-4 rounded-xl flex items-center justify-between">
-          <div>
-            <div class="font-bold text-white text-sm">DramaBox • $12.99/week → $56/mo</div>
-            <div class="text-xs text-gray-400">Drama short-form trap</div>
-          </div>
-          <button onclick="quickLookup('DramaBox')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Cancel Options</button>
-        </div>
-        <div class="card-bg p-4 rounded-xl flex items-center justify-between">
-          <div>
-            <div class="font-bold text-white text-sm">Adobe Creative Cloud • $54.99/mo</div>
-            <div class="text-xs text-gray-400">High commitment design plan</div>
-          </div>
-          <button onclick="quickLookup('Adobe')" class="text-xs border border-emerald-800 bg-emerald-950/40 text-emerald-400 px-3.5 py-1.5 rounded-lg hover:bg-emerald-900/50">Switch to Figma/Canva save $30/mo</button>
+          <p class="text-slate-900 dark:text-white font-medium">Our mission: make the true monthly cost obvious, give you the exact cancel path on iOS, Android & Web, and help you switch to cheaper tools. Save $500–$1200/year without spreadsheets.</p>
         </div>
       </div>
     </section>
 
     <!-- Pricing Section -->
     <section id="pricing" class="text-center pt-8">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-gray-800 text-gray-300 border border-gray-700 mb-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-slate-200 dark:bg-gray-800 text-slate-700 dark:text-gray-300 border border-slate-300 dark:border-gray-700 mb-3">
         Simple pricing • No hidden fees • LemonSqueezy secure
       </div>
-      <h2 class="text-3xl md:text-4xl font-black text-white">Pay once, save all year</h2>
-      <p class="text-gray-400 text-xs md:text-sm mt-2">Free = 5 subs forever. Pro unlocks unlimited tracking, trial alerts & export.</p>
+      <h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white">Pay once, save all year</h2>
+      <p class="text-slate-500 dark:text-gray-400 text-xs md:text-sm mt-2">Free = 5 subs forever. Pro unlocks unlimited tracking, trial alerts & export.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-left">
-        <div class="card-bg p-6 rounded-2xl flex flex-col justify-between">
+        <!-- Monthly Plan -->
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
           <div>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-gray-800 text-gray-300">Flexible</span>
-            <div class="text-3xl font-black mt-4">$5<span class="text-xs font-normal text-gray-400">/month</span></div>
-            <p class="text-xs text-gray-400 mt-1">Cancel anytime via LemonSqueezy.</p>
-            <ul class="text-xs text-gray-300 space-y-2 mt-5">
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-gray-800 text-slate-700 dark:text-gray-300">Flexible</span>
+            <div class="text-3xl font-black mt-4">$5<span class="text-xs font-normal text-slate-400 dark:text-gray-400">/month</span></div>
+            <p class="text-xs text-slate-400 dark:text-gray-400 mt-1">Cancel anytime via LemonSqueezy.</p>
+            <ul class="text-xs text-slate-600 dark:text-gray-300 space-y-2 mt-5">
               <li>✓ Unlimited subscriptions</li>
               <li>✓ Weekly trap alerts</li>
               <li>✓ 1-click cancel guides (64+ apps)</li>
               <li>✓ Trial reminders & export</li>
             </ul>
           </div>
-          <button onclick="openCheckout('Monthly Pro', 5)" class="w-full mt-6 py-2.5 rounded-xl border border-gray-700 bg-gray-900 text-xs font-semibold hover:bg-gray-800 transition text-white">Subscribe $5/mo</button>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/2adba7db-2b70-476a-b427-72944bad469c" target="_blank" class="w-full mt-6 py-2.5 rounded-xl border border-slate-300 dark:border-gray-700 bg-slate-100 dark:bg-gray-900 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-gray-800 transition text-center block">Subscribe $5/mo</a>
         </div>
 
-        <div class="card-bg p-6 rounded-2xl border-2 border-purple-500 relative flex flex-col justify-between shadow-xl shadow-purple-900/20">
+        <!-- Yearly Plan -->
+        <div class="bg-white dark:bg-[#111827] border-2 border-purple-500 p-6 rounded-2xl relative flex flex-col justify-between shadow-xl shadow-purple-500/10">
           <span class="absolute -top-3 right-4 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-600 text-white uppercase tracking-wider">Popular • Save 51%</span>
           <div>
-            <div class="text-xs text-purple-400 font-semibold">Yearly</div>
-            <div class="text-3xl font-black mt-2">$29<span class="text-xs font-normal text-gray-400">/year</span></div>
-            <p class="text-xs text-gray-400 mt-1">$2.41/mo billed yearly. Popular choice.</p>
-            <ul class="text-xs text-gray-300 space-y-2 mt-5">
+            <div class="text-xs text-purple-600 dark:text-purple-400 font-semibold">Yearly</div>
+            <div class="text-3xl font-black mt-2">$29<span class="text-xs font-normal text-slate-400 dark:text-gray-400">/year</span></div>
+            <p class="text-xs text-slate-400 dark:text-gray-400 mt-1">$2.41/mo billed yearly. Popular choice.</p>
+            <ul class="text-xs text-slate-600 dark:text-gray-300 space-y-2 mt-5">
               <li>✓ Everything in Monthly</li>
               <li>✓ Save 51% vs $5/mo ($60/yr → $29/yr)</li>
               <li>✓ Priority support</li>
               <li>✓ Early new apps & guides</li>
             </ul>
           </div>
-          <button onclick="openCheckout('Yearly Pro', 29)" class="w-full mt-6 py-2.5 rounded-xl btn-gradient text-white text-xs font-bold">Get Yearly $29/yr</button>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/62d5af07-362f-475a-848a-d2b864881d74" target="_blank" class="w-full mt-6 py-2.5 rounded-xl btn-gradient text-white text-xs font-bold text-center block">Get Yearly $29/yr</a>
         </div>
 
-        <div class="card-bg p-6 rounded-2xl flex flex-col justify-between">
+        <!-- Lifetime Plan -->
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
           <div>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-gray-800 text-emerald-400">BEST VALUE</span>
-            <div class="text-3xl font-black mt-4">$59<span class="text-xs font-normal text-gray-400"> one-time</span></div>
-            <p class="text-xs text-gray-400 mt-1">Pay once, use forever. Save $200+.</p>
-            <ul class="text-xs text-gray-300 space-y-2 mt-5">
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400">BEST VALUE</span>
+            <div class="text-3xl font-black mt-4">$59<span class="text-xs font-normal text-slate-400 dark:text-gray-400"> one-time</span></div>
+            <p class="text-xs text-slate-400 dark:text-gray-400 mt-1">Pay once, use forever. Save $200+.</p>
+            <ul class="text-xs text-slate-600 dark:text-gray-300 space-y-2 mt-5">
               <li>✓ Everything in Yearly</li>
               <li>✓ Lifetime updates & new guides</li>
               <li>✓ One payment $59 — never again</li>
               <li>✓ Best Value - Save $200+ long term</li>
             </ul>
           </div>
-          <button onclick="openCheckout('Lifetime Deal', 59)" class="w-full mt-6 py-2.5 rounded-xl border border-gray-700 bg-gray-900 text-xs font-semibold hover:bg-gray-800 transition text-white">Buy Lifetime $59</button>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/b91938ad-6b37-4380-a0b2-964b781e91ff" target="_blank" class="w-full mt-6 py-2.5 rounded-xl border border-slate-300 dark:border-gray-700 bg-slate-100 dark:bg-gray-900 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-gray-800 transition text-center block">Buy Lifetime $59</a>
         </div>
       </div>
     </section>
 
-    <!-- FAQ Section (Accordion) -->
+    <!-- FAQ Section -->
     <section id="faq" class="max-w-3xl mx-auto">
-      <h2 class="text-3xl font-black text-white text-center mb-8">Frequently Asked Questions</h2>
+      <h2 class="text-3xl font-black text-slate-900 dark:text-white text-center mb-8">Frequently Asked Questions</h2>
       <div class="space-y-3">
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-semibold text-sm text-white flex justify-between items-center">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
             How does SaveBucks work?
             <span id="faq-icon-1">+</span>
           </button>
-          <div id="faq-answer-1" class="hidden px-4 pb-4 text-xs text-gray-400 border-t border-gray-800/60 pt-3">
+          <div id="faq-answer-1" class="hidden px-4 pb-4 text-xs text-slate-600 dark:text-gray-400 border-t border-slate-100 dark:border-gray-800 pt-3">
             Add your subscriptions manually or find them via our universal directory. We convert hidden weekly pricing into true monthly expense, flag duplicate apps, and give you 1-click cancel deep links for iOS, Android, and Web.
           </div>
         </div>
 
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-semibold text-sm text-white flex justify-between items-center">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
             Is my personal & financial data safe?
             <span id="faq-icon-2">+</span>
           </button>
-          <div id="faq-answer-2" class="hidden px-4 pb-4 text-xs text-gray-400 border-t border-gray-800/60 pt-3">
+          <div id="faq-answer-2" class="hidden px-4 pb-4 text-xs text-slate-600 dark:text-gray-400 border-t border-slate-100 dark:border-gray-800 pt-3">
             Yes, 100%! We NEVER ask for your bank login, credit card numbers, or passwords. All calculations run safely right inside your browser.
           </div>
         </div>
 
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-semibold text-sm text-white flex justify-between items-center">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+          <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center">
             What is the free limit?
             <span id="faq-icon-3">+</span>
           </button>
-          <div id="faq-answer-3" class="hidden px-4 pb-4 text-xs text-gray-400 border-t border-gray-800/60 pt-3">
+          <div id="faq-answer-3" class="hidden px-4 pb-4 text-xs text-slate-600 dark:text-gray-400 border-t border-slate-100 dark:border-gray-800 pt-3">
             You can track up to 5 subscriptions completely free forever. Upgrading to Pro gives you unlimited tracking, trial ending alerts, and export tools.
-          </div>
-        </div>
-
-        <div class="card-bg rounded-xl overflow-hidden">
-          <button onclick="toggleFaq(4)" class="w-full p-4 text-left font-semibold text-sm text-white flex justify-between items-center">
-            How do I cancel weekly traps like ReelShort or MadMuscle?
-            <span id="faq-icon-4">+</span>
-          </button>
-          <div id="faq-answer-4" class="hidden px-4 pb-4 text-xs text-gray-400 border-t border-gray-800/60 pt-3">
-            Search for the app in our directory and tap 'Cancel Options'. You will get direct deep links that instantly open your Apple ID Subscriptions page or Google Play Subscriptions screen.
           </div>
         </div>
       </div>
@@ -344,91 +315,75 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-gray-800 py-10 bg-[#0b0f17] text-xs text-gray-500">
+  <footer class="border-t border-slate-200 dark:border-gray-800 py-10 bg-white dark:bg-[#0b0f17] text-xs text-slate-500 dark:text-gray-500">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
         <span class="text-xl font-black italic tracking-wider brand-gradient">SaveBucks</span>
-        <p class="mt-2 text-gray-400">Stop paying for forgotten subscriptions and weekly traps.</p>
+        <p class="mt-2 text-slate-500 dark:text-gray-400">Stop paying for forgotten subscriptions and weekly traps.</p>
       </div>
       <div>
-        <h4 class="font-bold text-white mb-2 uppercase tracking-wider text-[11px]">Product</h4>
-        <ul class="space-y-1 text-gray-400">
-          <li><a href="#" class="hover:text-white">Home</a></li>
-          <li><a href="#services" class="hover:text-white">Services</a></li>
-          <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
-          <li><a href="#dashboard" class="hover:text-white">Dashboard</a></li>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-2 uppercase tracking-wider text-[11px]">Product</h4>
+        <ul class="space-y-1 text-slate-600 dark:text-gray-400">
+          <li><a href="#" class="hover:text-cyan-500">Home</a></li>
+          <li><a href="#services" class="hover:text-cyan-500">Services</a></li>
+          <li><a href="#pricing" class="hover:text-cyan-500">Pricing</a></li>
+          <li><a href="#dashboard" class="hover:text-cyan-500">Dashboard</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-bold text-white mb-2 uppercase tracking-wider text-[11px]">Legal & Help</h4>
-        <ul class="space-y-1 text-gray-400">
-          <li><button onclick="openModal('termsModal')" class="hover:text-white">Terms of Service</button></li>
-          <li><button onclick="openModal('privacyModal')" class="hover:text-white">Privacy Policy</button></li>
-          <li><button onclick="openModal('manualModal')" class="hover:text-white">User Manual & Guide</button></li>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-2 uppercase tracking-wider text-[11px]">Legal & Help</h4>
+        <ul class="space-y-1 text-slate-600 dark:text-gray-400">
+          <li><button onclick="openModal('termsModal')" class="hover:text-cyan-500">Terms of Service</button></li>
+          <li><button onclick="openModal('privacyModal')" class="hover:text-cyan-500">Privacy Policy</button></li>
+          <li><button onclick="openModal('manualModal')" class="hover:text-cyan-500">User Manual & Guide</button></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-bold text-white mb-2 uppercase tracking-wider text-[11px]">Support</h4>
-        <p class="text-gray-400">Email: futuretechai1999@gmail.com</p>
-        <p class="text-gray-400 mt-1">Payments verified via LemonSqueezy</p>
+        <h4 class="font-bold text-slate-900 dark:text-white mb-2 uppercase tracking-wider text-[11px]">Support</h4>
+        <p class="text-slate-600 dark:text-gray-400">Email: futuretechai1999@gmail.com</p>
+        <p class="text-slate-600 dark:text-gray-400 mt-1">Payments verified via LemonSqueezy</p>
       </div>
     </div>
-    <div class="text-center mt-8 border-t border-gray-900 pt-6">
+    <div class="text-center mt-8 border-t border-slate-100 dark:border-gray-900 pt-6">
       © 2026 SaveBucks. All rights reserved.
     </div>
   </footer>
 
   <!-- MODAL: Cancel Options (Web / iOS / Android) -->
   <div id="cancelModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="card-bg p-6 rounded-2xl max-w-lg w-full border border-gray-700 shadow-2xl relative">
-      <button onclick="closeModal('cancelModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
-      <h3 class="text-xl font-bold text-white" id="modalAppName">Cancel Subscription</h3>
-      <p class="text-xs text-gray-400 mt-1">Choose where you purchased this subscription to cancel instantly:</p>
+    <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative">
+      <button onclick="closeModal('cancelModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">✕</button>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white" id="modalAppName">Cancel Subscription</h3>
+      <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Choose where you purchased this subscription to cancel instantly:</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-5">
-        <a id="appleCancelLink" href="https://apps.apple.com/account/subscriptions" target="_blank" class="p-3 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-xl text-center transition">
-          <div class="text-xs font-bold text-white">Apple iOS</div>
-          <div class="text-[10px] text-gray-400 mt-0.5">App Store ↗</div>
+        <a id="appleCancelLink" href="https://apps.apple.com/account/subscriptions" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-center transition">
+          <div class="text-xs font-bold text-slate-900 dark:text-white">Apple iOS</div>
+          <div class="text-[10px] text-slate-500 dark:text-gray-400 mt-0.5">App Store ↗</div>
         </a>
-        <a id="playCancelLink" href="https://play.google.com/store/account/subscriptions" target="_blank" class="p-3 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-xl text-center transition">
-          <div class="text-xs font-bold text-white">Google Play</div>
-          <div class="text-[10px] text-gray-400 mt-0.5">Android ↗</div>
+        <a id="playCancelLink" href="https://play.google.com/store/account/subscriptions" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-center transition">
+          <div class="text-xs font-bold text-slate-900 dark:text-white">Google Play</div>
+          <div class="text-[10px] text-slate-500 dark:text-gray-400 mt-0.5">Android ↗</div>
         </a>
-        <a id="webCancelLink" href="#" target="_blank" class="p-3 bg-gray-900 hover:bg-gray-800 border border-gray-700 rounded-xl text-center transition">
-          <div class="text-xs font-bold text-white">Direct Website</div>
-          <div class="text-[10px] text-cyan-400 mt-0.5">Web Billing ↗</div>
+        <a id="webCancelLink" href="#" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-center transition">
+          <div class="text-xs font-bold text-slate-900 dark:text-white">Direct Website</div>
+          <div class="text-[10px] text-cyan-600 dark:text-cyan-400 mt-0.5">Web Billing ↗</div>
         </a>
       </div>
 
       <div class="mt-5">
-        <div class="text-xs uppercase font-bold text-gray-400 mb-1">Step-by-Step Instructions</div>
-        <pre id="modalSteps" class="bg-gray-900/90 p-4 rounded-xl text-xs text-gray-300 whitespace-pre-line border border-gray-800 font-sans"></pre>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: Payment / LemonSqueezy Checkout -->
-  <div id="paymentModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="card-bg p-6 rounded-2xl max-w-md w-full border border-purple-500/50 shadow-2xl relative">
-      <button onclick="closeModal('paymentModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
-      <div class="text-xs font-bold text-purple-400 uppercase tracking-wider">LemonSqueezy Secure Checkout</div>
-      <h3 class="text-2xl font-black text-white mt-1" id="checkoutPlanName">Pro Plan</h3>
-      <div class="text-3xl font-extrabold text-white mt-2" id="checkoutPrice">$29</div>
-
-      <div class="mt-4 space-y-3">
-        <input type="email" id="checkoutEmail" placeholder="Enter your email address" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
-        <button onclick="processFakePayment()" class="w-full btn-gradient text-white text-sm font-bold py-3.5 rounded-xl shadow">Proceed to Payment</button>
-        <p class="text-[11px] text-gray-400 text-center">To link your live LemonSqueezy store, add your store checkout URL.</p>
+        <div class="text-xs uppercase font-bold text-slate-500 dark:text-gray-400 mb-1">Step-by-Step Instructions</div>
+        <pre id="modalSteps" class="bg-slate-50 dark:bg-gray-900/90 p-4 rounded-xl text-xs text-slate-700 dark:text-gray-300 whitespace-pre-line border border-slate-200 dark:border-gray-800 font-sans"></pre>
       </div>
     </div>
   </div>
 
   <!-- MODAL: User Manual -->
   <div id="manualModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="card-bg p-6 rounded-2xl max-w-lg w-full border border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('manualModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
-      <h3 class="text-xl font-bold text-white mb-3">SaveBucks — User Manual</h3>
-      <div class="text-xs text-gray-300 space-y-3 leading-relaxed">
+    <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+      <button onclick="closeModal('manualModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">✕</button>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">SaveBucks — User Manual</h3>
+      <div class="text-xs text-slate-600 dark:text-gray-300 space-y-3 leading-relaxed">
         <p><strong>1. How to search an app:</strong> Type any service name into the top search bar. Instant suggestions will display pricing tiers and direct cancel paths.</p>
         <p><strong>2. How to cancel a subscription:</strong> Click on 'Cancel Options'. Choose whether you subscribed via Apple App Store, Google Play Store, or Web site to open the exact cancellation page.</p>
         <p><strong>3. Using the Dashboard:</strong> You can add up to 5 apps for free. Weekly charges (like $14.99/week) are automatically multiplied by 4.33 so you can see your true monthly spend.</p>
@@ -438,10 +393,10 @@
 
   <!-- MODAL: Terms of Service -->
   <div id="termsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="card-bg p-6 rounded-2xl max-w-lg w-full border border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('termsModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
-      <h3 class="text-xl font-bold text-white mb-3">Terms of Service</h3>
-      <div class="text-xs text-gray-300 space-y-2 leading-relaxed">
+    <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+      <button onclick="closeModal('termsModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">✕</button>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Terms of Service</h3>
+      <div class="text-xs text-slate-600 dark:text-gray-300 space-y-2 leading-relaxed">
         <p>By using SaveBucks, you acknowledge that SaveBucks provides directory links and estimation calculators for informational purposes.</p>
         <p>SaveBucks is not directly affiliated with Apple, Google, Netflix, or any third-party app mentioned on this platform.</p>
       </div>
@@ -450,16 +405,48 @@
 
   <!-- MODAL: Privacy Policy -->
   <div id="privacyModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="card-bg p-6 rounded-2xl max-w-lg w-full border border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
-      <button onclick="closeModal('privacyModal')" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">✕</button>
-      <h3 class="text-xl font-bold text-white mb-3">Privacy Policy</h3>
-      <div class="text-xs text-gray-300 space-y-2 leading-relaxed">
+    <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+      <button onclick="closeModal('privacyModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">✕</button>
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Privacy Policy</h3>
+      <div class="text-xs text-slate-600 dark:text-gray-300 space-y-2 leading-relaxed">
         <p>We respect your privacy. SaveBucks operates client-side and does NOT collect or store your bank accounts, credit card numbers, or passwords.</p>
       </div>
     </div>
   </div>
 
   <script>
+    // Theme Switcher (Dark -> Light -> System)
+    const themes = ['dark', 'light', 'system'];
+    let currentThemeIndex = 0;
+
+    function applyTheme(theme) {
+      const root = document.documentElement;
+      const icon = document.getElementById('themeIcon');
+      
+      if (theme === 'system') {
+        const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        root.classList.toggle('dark', isSystemDark);
+        icon.innerText = '💻';
+      } else if (theme === 'light') {
+        root.classList.remove('dark');
+        icon.innerText = '☀️';
+      } else {
+        root.classList.add('dark');
+        icon.innerText = '🌙';
+      }
+      localStorage.setItem('savebucks_theme', theme);
+    }
+
+    function cycleTheme() {
+      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+      applyTheme(themes[currentThemeIndex]);
+    }
+
+    const savedTheme = localStorage.getItem('savebucks_theme') || 'dark';
+    currentThemeIndex = themes.indexOf(savedTheme);
+    if (currentThemeIndex === -1) currentThemeIndex = 0;
+    applyTheme(savedTheme);
+
     // Universal Database with Web, iOS & Android Cancel Links
     const appsDB = [
       {
@@ -550,15 +537,15 @@
 
       if (matches.length > 0) {
         drop.innerHTML = matches.map(app => `
-          <div onclick="selectApp('${app.name}')" class="px-4 py-3 hover:bg-gray-800 cursor-pointer border-b border-gray-800 last:border-none flex justify-between items-center text-sm">
-            <span class="font-semibold text-white">${app.name}</span>
-            <span class="text-xs text-cyan-400">${app.category}</span>
+          <div onclick="selectApp('${app.name}')" class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-gray-800 cursor-pointer border-b border-slate-100 dark:border-gray-800 last:border-none flex justify-between items-center text-sm">
+            <span class="font-semibold text-slate-900 dark:text-white">${app.name}</span>
+            <span class="text-xs text-cyan-600 dark:text-cyan-400">${app.category}</span>
           </div>
         `).join('');
         drop.classList.remove('hidden');
       } else {
         drop.innerHTML = `
-          <div onclick="selectCustomApp('${q}')" class="px-4 py-3 hover:bg-gray-800 cursor-pointer text-xs text-rose-400">
+          <div onclick="selectCustomApp('${q}')" class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-gray-800 cursor-pointer text-xs text-rose-500">
             Show universal multi-platform cancel options for "${q}" →
           </div>
         `;
@@ -597,22 +584,22 @@
       const box = document.getElementById('searchResult');
       box.classList.remove('hidden');
       box.innerHTML = `
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 dark:border-gray-800 pb-4">
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="text-xl font-extrabold text-white">${app.name}</h3>
-              <span class="text-xs px-2 py-0.5 rounded bg-gray-800 text-cyan-400 border border-gray-700 font-mono">${app.category}</span>
+              <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">${app.name}</h3>
+              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-gray-800 text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-gray-700 font-mono">${app.category}</span>
             </div>
-            <div class="text-xs text-gray-400 mt-1">Available Plans: <span class="text-white font-medium">${app.plans}</span></div>
+            <div class="text-xs text-slate-500 dark:text-gray-400 mt-1">Available Plans: <span class="text-slate-900 dark:text-white font-medium">${app.plans}</span></div>
           </div>
           <div class="flex items-center gap-2">
             <button onclick='openCancelModal(${JSON.stringify(app)})' class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition">Cancel Options ↗</button>
-            <button onclick="prefillDashboard('${app.name}')" class="px-3 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-xs text-gray-300 font-medium border border-gray-700">+ Add to Dashboard</button>
+            <button onclick="prefillDashboard('${app.name}')" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-gray-800 hover:bg-slate-200 dark:hover:bg-gray-700 text-xs text-slate-700 dark:text-gray-300 font-medium border border-slate-300 dark:border-gray-700">+ Add to Dashboard</button>
           </div>
         </div>
         <div class="mt-4">
-          <div class="text-xs uppercase font-bold text-gray-400 mb-1">Cancellation Instructions:</div>
-          <pre class="bg-gray-900/90 p-4 rounded-xl text-xs text-gray-300 whitespace-pre-line border border-gray-800 font-sans">${app.steps}</pre>
+          <div class="text-xs uppercase font-bold text-slate-500 dark:text-gray-400 mb-1">Cancellation Instructions:</div>
+          <pre class="bg-slate-50 dark:bg-gray-900/90 p-4 rounded-xl text-xs text-slate-700 dark:text-gray-300 whitespace-pre-line border border-slate-200 dark:border-gray-800 font-sans">${app.steps}</pre>
         </div>
       `;
     }
@@ -632,12 +619,8 @@
     }
 
     // Modal Control Functions
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-    }
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
     // FAQ Accordion Toggle
     function toggleFaq(num) {
@@ -650,23 +633,6 @@
         ans.classList.add('hidden');
         icon.innerText = "+";
       }
-    }
-
-    // Checkout Flow Trigger
-    function openCheckout(planName, price) {
-      document.getElementById('checkoutPlanName').innerText = planName;
-      document.getElementById('checkoutPrice').innerText = "$" + price;
-      openModal('paymentModal');
-    }
-
-    function processFakePayment() {
-      const email = document.getElementById('checkoutEmail').value.trim();
-      if (!email || !email.includes('@')) {
-        alert("Please enter a valid email address.");
-        return;
-      }
-      alert("Redirecting to LemonSqueezy secure payment gateway for: " + email);
-      closeModal('paymentModal');
     }
 
     // Dashboard Tracker Logic
@@ -682,14 +648,8 @@
       const cost = parseFloat(costInput.value);
       const cycle = cycleInput.value;
 
-      if (!name) {
-        alert("Please enter an app name.");
-        return;
-      }
-      if (isNaN(cost) || cost <= 0) {
-        alert("Please enter a valid price.");
-        return;
-      }
+      if (!name) return alert("Please enter an app name.");
+      if (isNaN(cost) || cost <= 0) return alert("Please enter a valid price.");
 
       if (userSubscriptions.length >= MAX_FREE_SUBS) {
         alert("You have reached your 5 free subscriptions limit! Upgrade to Pro for unlimited tracking.");
@@ -720,7 +680,7 @@
 
       if (count === 0) {
         list.innerHTML = `
-          <div class="text-center py-8 text-gray-500 text-sm border border-dashed border-gray-800 rounded-2xl">
+          <div class="text-center py-8 text-slate-400 dark:text-gray-500 text-sm border border-dashed border-slate-300 dark:border-gray-800 rounded-2xl">
             No subscriptions added yet. Add an app above to calculate your burn!
           </div>
         `;
@@ -748,21 +708,21 @@
         monthlyTotal += monthlyEquiv;
 
         return `
-          <div class="flex items-center justify-between p-4 bg-gray-900/80 rounded-2xl border border-gray-800">
+          <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-gray-900/80 rounded-2xl border border-slate-200 dark:border-gray-800">
             <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full bg-gray-800 text-cyan-400 font-bold flex items-center justify-center text-xs">
+              <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-gray-800 text-cyan-600 dark:text-cyan-400 font-bold flex items-center justify-center text-xs">
                 ${sub.name.charAt(0).toUpperCase()}
               </div>
               <div>
-                <div class="font-bold text-white text-sm">${sub.name} <span class="text-[11px] font-normal text-gray-400 capitalize">• ${sub.cycle}</span></div>
-                <div class="text-xs ${isTrap ? 'text-amber-400 font-semibold' : 'text-gray-400'}">
+                <div class="font-bold text-slate-900 dark:text-white text-sm">${sub.name} <span class="text-[11px] font-normal text-slate-500 dark:text-gray-400 capitalize">• ${sub.cycle}</span></div>
+                <div class="text-xs ${isTrap ? 'text-amber-600 dark:text-amber-400 font-semibold' : 'text-slate-500 dark:text-gray-400'}">
                   $${sub.cost.toFixed(2)}/${sub.cycle.charAt(0).toUpperCase()} ${isTrap ? `→ $${monthlyEquiv.toFixed(2)}/mo trap` : ''}
                 </div>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="quickLookup('${sub.name}')" class="text-xs bg-gray-800 hover:bg-gray-700 text-gray-200 px-3 py-1.5 rounded-lg border border-gray-700 font-medium">Cancel Options</button>
-              <button onclick="removeSubscription(${sub.id})" class="text-xs text-rose-400 hover:text-rose-300 px-2 py-1">Remove</button>
+              <button onclick="displayAppDetails({name: '${sub.name}', category: 'Subscribed Tool', plans: '$${sub.cost}', steps: 'Open settings of ${sub.name} to cancel.'})" class="text-xs bg-slate-200 dark:bg-gray-800 hover:bg-slate-300 dark:hover:bg-gray-750 text-slate-800 dark:text-gray-200 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-gray-700 font-medium">Cancel Guide</button>
+              <button onclick="removeSubscription(${sub.id})" class="text-xs text-rose-500 hover:text-rose-400 px-2 py-1">Remove</button>
             </div>
           </div>
         `;
