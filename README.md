@@ -22,6 +22,7 @@ SaveBucks takes a **privacy-first approach**: your subscription data is processe
 - **⚡ 1-Click Direct Cancel Links:** Quick links and guidance for cancelling Netflix, Spotify, Prime, Adobe, and more.
 - **🔒 Zero-Knowledge Privacy:** No backend database storing your financial records. Data resides in your browser's local storage.
 - **🌓 Clean UI:** Fully responsive design with support for both dark and light modes.
+<img width="971" height="909" alt="Screenshot 2026-10-08 010918" src="https://github.com/user-attachments/assets/172cc4de-8734-4de4-829d-b9a87d7cdbb9" />
 
 ---
 
@@ -32,6 +33,8 @@ SaveBucks takes a **privacy-first approach**: your subscription data is processe
 | **Free Tier** | **$0** | Track up to 5 recurring subscriptions, renewal reminders, basic dashboard |
 | **Pro Lifetime** | **$19** *(One-time)* | Unlimited subscriptions, export to CSV/JSON, priority support, all future updates |
 | **Cancel-For-You Add-on** | **$7.99** *(Optional)* | Pre-filled legal cancellation letter templates & step-by-step assistance |
+<img width="913" height="759" alt="Screenshot 2026-10-08 010937" src="https://github.com/user-attachments/assets/819a480c-186b-4411-855d-ca2d6786bb17" />
+
 
 *Secure checkout powered by LemonSqueezy with instant license key activation.*
 
@@ -44,6 +47,7 @@ SaveBucks takes a **privacy-first approach**: your subscription data is processe
 - **State & Storage:** Browser LocalStorage API (Zero server-side persistence)
 - **Payments:** [LemonSqueezy](https://www.lemonsqueezy.com/) Checkout Overlay & Webhooks
 - **Hosting & CI/CD:** Deployed on Vercel Global Edge Network
+<img width="969" height="815" alt="Screenshot 2026-10-08 011008" src="https://github.com/user-attachments/assets/6e8ad4fc-bcf0-45b7-961d-1d0a40c9f450" />
 
 ---
 
