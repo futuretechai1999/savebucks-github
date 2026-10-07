@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SaveBucks — Stop Paying for Subscriptions You Forgot</title>
+  
+  <!-- OpenGraph & Social Sharing Meta Tags -->
+  <meta name="description" content="Track 64+ apps like Claude Pro, ReelShort, MadMuscle. Expose weekly traps ($29.99/wk = $130/mo) and cancel in 1-click." />
+  <meta property="og:title" content="SaveBucks — Stop Paying for Subscriptions You Forgot" />
+  <meta property="og:description" content="Calculate your true monthly burn, find weekly traps, and get direct 1-click cancellation links for iOS, Android & Web." />
+  <meta property="og:image" content="https://savebuckss.site/logo.png" />
+  <meta property="og:url" content="https://savebuckss.site" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SaveBucks — Cancel Traps & Track Subscriptions" />
+  <meta name="twitter:description" content="Find hidden App Store weekly traps and get instant cancel paths." />
+  <meta name="twitter:image" content="https://savebuckss.site/logo.png" />
+
   <!-- Favicon using your Logo -->
   <link rel="icon" type="image/png" href="logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -108,7 +121,7 @@
         </div>
 
         <!-- Autocomplete Suggestions -->
-        <div id="suggestions" class="hidden absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden z-30 max-h-60 overflow-y-auto"></div>
+        <div id="suggestions" class="hidden absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden z-50 max-h-56 overflow-y-auto"></div>
       </div>
 
       <!-- Live Search Detail Card -->
@@ -122,7 +135,7 @@
           <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Dashboard</h2>
           <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Track 5 free, unlimited Pro • Support: futuretechai1999@gmail.com</p>
         </div>
-        <!-- Distinct Plan Buttons: Monthly, Yearly, and Lifetime -->
+        <!-- Distinct Plan Buttons -->
         <div class="flex flex-wrap items-center gap-2">
           <a href="https://savebuck.lemonsqueezy.com/checkout/buy/2adba7db-2b70-476a-b427-72944bad469c" target="_blank" class="btn-gradient text-white text-xs font-semibold px-3.5 py-2 rounded-lg shadow inline-block">Monthly $5/mo</a>
           <a href="https://savebuck.lemonsqueezy.com/checkout/buy/62d5af07-362f-475a-848a-d2b864881d74" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold inline-block shadow">Yearly $29/yr</a>
@@ -154,7 +167,13 @@
             <button onclick="addSubscription()" id="addBtn" class="w-full h-full btn-gradient text-white text-xs font-bold py-3 rounded-xl shadow">+ Add (0/5)</button>
           </div>
         </div>
-        <div class="text-[11px] text-slate-500 dark:text-gray-400 mt-2">Price entered • Weekly trap auto-converts (x4.33 to monthly)</div>
+        <div class="flex flex-wrap items-center justify-between text-[11px] text-slate-500 dark:text-gray-400 mt-2 gap-2">
+          <span>Price entered • Weekly trap auto-converts (x4.33 to monthly)</span>
+          <div class="space-x-3">
+            <button onclick="triggerProFeature('Export to CSV')" class="text-cyan-600 dark:text-cyan-400 font-medium hover:underline">Export CSV 🔒 Pro</button>
+            <button onclick="triggerProFeature('Trial Alerts')" class="text-purple-600 dark:text-purple-400 font-medium hover:underline">Trial Reminders 🔒 Pro</button>
+          </div>
+        </div>
       </div>
 
       <!-- Realtime Burn Metrics -->
@@ -175,9 +194,7 @@
 
       <!-- User Active Subscriptions List -->
       <div class="mt-8 space-y-3" id="userSubsList">
-        <div class="text-center py-8 text-slate-400 dark:text-gray-500 text-sm border border-dashed border-slate-300 dark:border-gray-800 rounded-2xl">
-          No subscriptions added yet. Add an app above to calculate your burn!
-        </div>
+        <!-- Rendered via localStorage -->
       </div>
     </section>
 
@@ -577,10 +594,11 @@
     if (currentThemeIndex === -1) currentThemeIndex = 0;
     applyTheme(savedTheme);
 
-    // Universal Database with Web, iOS & Android Cancel Links
+    // Universal Database with Search Aliases
     const appsDB = [
       {
         name: "Netflix",
+        aliases: ["netflix", "net flix", "ott"],
         category: "Streaming",
         plans: "Standard ($15.49/mo), Premium ($22.99/mo)",
         webCancel: "https://www.netflix.com/youraccount",
@@ -590,6 +608,7 @@
       },
       {
         name: "Claude Pro",
+        aliases: ["claude", "claude pro", "anthropic", "claude ai"],
         category: "AI Tool",
         plans: "$20/month ($240/year)",
         webCancel: "https://claude.ai/settings/billing",
@@ -599,6 +618,7 @@
       },
       {
         name: "ChatGPT Plus",
+        aliases: ["chatgpt", "chat gpt", "openai", "gpt plus", "gpt 4"],
         category: "AI Tool",
         plans: "$20/month",
         webCancel: "https://chatgpt.com/#settings",
@@ -608,6 +628,7 @@
       },
       {
         name: "ReelShort",
+        aliases: ["reelshort", "reel short", "drama app"],
         category: "Micro Drama Trap",
         plans: "$14.99/week ($65/mo trap!)",
         webCancel: "https://www.reelshort.com",
@@ -617,6 +638,7 @@
       },
       {
         name: "MadMuscle",
+        aliases: ["madmuscle", "mad muscle", "fitness trap", "workout"],
         category: "Fitness Trap",
         plans: "$29.99/week ($130/mo trap!)",
         webCancel: "https://madmuscle.com/login",
@@ -626,6 +648,7 @@
       },
       {
         name: "DramaBox",
+        aliases: ["dramabox", "drama box", "shortmax"],
         category: "Micro Drama Trap",
         plans: "$12.99/week ($56/mo trap!)",
         webCancel: "https://www.storymatrix.com",
@@ -635,6 +658,7 @@
       },
       {
         name: "Amazon Prime",
+        aliases: ["prime", "amazon prime", "amazon video"],
         category: "Shopping & Streaming",
         plans: "$14.99/mo or $139/yr",
         webCancel: "https://www.amazon.com/mc/manage",
@@ -644,6 +668,7 @@
       },
       {
         name: "Adobe Creative Cloud",
+        aliases: ["adobe", "photoshop", "creative cloud", "illustrator"],
         category: "Design Software",
         plans: "$54.99/month",
         webCancel: "https://account.adobe.com/plans",
@@ -653,17 +678,22 @@
       }
     ];
 
-    // Search Engine Logic
+    // Search Engine Logic with Aliases & Normalized Spacing
     function handleSearch() {
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      const raw = document.getElementById('searchInput').value.trim().toLowerCase();
+      const clean = raw.replace(/\s+/g, '');
       const drop = document.getElementById('suggestions');
 
-      if (!q) {
+      if (!raw) {
         drop.classList.add('hidden');
         return;
       }
 
-      const matches = appsDB.filter(a => a.name.toLowerCase().includes(q));
+      const matches = appsDB.filter(a => {
+        const nameMatch = a.name.toLowerCase().includes(raw) || a.name.toLowerCase().replace(/\s+/g, '').includes(clean);
+        const aliasMatch = a.aliases && a.aliases.some(alias => alias.includes(raw) || alias.replace(/\s+/g, '').includes(clean));
+        return nameMatch || aliasMatch;
+      });
 
       if (matches.length > 0) {
         drop.innerHTML = matches.map(app => `
@@ -675,8 +705,8 @@
         drop.classList.remove('hidden');
       } else {
         drop.innerHTML = `
-          <div onclick="selectCustomApp('${q}')" class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-gray-800 cursor-pointer text-xs text-rose-500">
-            Show universal multi-platform cancel options for "${q}" →
+          <div onclick="selectCustomApp('${raw}')" class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-gray-800 cursor-pointer text-xs text-rose-500">
+            Show universal multi-platform cancel options for "${raw}" →
           </div>
         `;
         drop.classList.remove('hidden');
@@ -752,6 +782,12 @@
     function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
     function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
+    // Pro Feature Trigger Function
+    function triggerProFeature(featureName) {
+      alert(`${featureName} is a Pro feature! Please upgrade to Yearly ($29/yr) or Lifetime ($59) to unlock.`);
+      window.location.hash = '#pricing';
+    }
+
     // FAQ Accordion Toggle
     function toggleFaq(num) {
       const ans = document.getElementById('faq-answer-' + num);
@@ -765,9 +801,27 @@
       }
     }
 
-    // Dashboard Tracker Logic
-    let userSubscriptions = [];
+    // Dashboard Tracker Logic with LocalStorage Auto-Persistence
     const MAX_FREE_SUBS = 5;
+    let userSubscriptions = [];
+
+    function loadSavedSubscriptions() {
+      try {
+        const stored = localStorage.getItem('savebucks_user_subs');
+        if (stored) {
+          userSubscriptions = JSON.parse(stored);
+        }
+      } catch (e) {
+        userSubscriptions = [];
+      }
+      renderDashboard();
+    }
+
+    function persistSubscriptions() {
+      try {
+        localStorage.setItem('savebucks_user_subs', JSON.stringify(userSubscriptions));
+      } catch (e) {}
+    }
 
     function addSubscription() {
       const nameInput = document.getElementById('newAppName');
@@ -791,11 +845,13 @@
       nameInput.value = '';
       costInput.value = '';
 
+      persistSubscriptions();
       renderDashboard();
     }
 
     function removeSubscription(id) {
       userSubscriptions = userSubscriptions.filter(s => s.id !== id);
+      persistSubscriptions();
       renderDashboard();
     }
 
@@ -862,6 +918,9 @@
       document.getElementById('burnYearly').innerText = `$${Math.round(monthlyTotal * 12)}`;
       document.getElementById('burnWeeklyTrap').innerText = `$${Math.round(weeklyTrapTotal)}`;
     }
+
+    // Initialize Dashboard with LocalStorage
+    loadSavedSubscriptions();
   </script>
 </body>
 </html>
