@@ -30,14 +30,11 @@ SaveBucks takes a **privacy-first approach**: your subscription data is processe
 
 | Plan | Price | Features |
 | :--- | :--- | :--- |
-| **Free Tier** | **$0** | Track up to 5 recurring subscriptions, renewal reminders, basic dashboard |
-| **Pro Lifetime** | **$19** *(One-time)* | Unlimited subscriptions, export to CSV/JSON, priority support, all future updates |
-| **Cancel-For-You Add-on** | **$7.99** *(Optional)* | Pre-filled legal cancellation letter templates & step-by-step assistance |
-<img width="913" height="759" alt="Screenshot 2026-10-08 010937" src="https://github.com/user-attachments/assets/819a480c-186b-4411-855d-ca2d6786bb17" />
-
+| **Starter** | **$5** | Basic subscription tracking, manual entries, direct cancel guides |
+| **Pro** | **$29 / year** | Unlimited tracking, smart renewal reminders, savings dashboard |
+| **Lifetime** | **$59** *(Best Value)* | Everything in Pro, lifetime updates, priority support, no recurring fees |
 
 *Secure checkout powered by LemonSqueezy with instant license key activation.*
-
 ---
 
 ## 🛠️ Tech Stack
