@@ -23,36 +23,56 @@
   <script>
     tailwind.config = {
       darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            brand: ['"Oleo Script"', 'cursive'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
     }
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Fonts: Oleo Script (Nexa Script Style) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
-    .brand-gradient { background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #f43f5e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .btn-gradient { background: linear-gradient(90deg, #38bdf8 0%, #ec4899 100%); }
-    .btn-gradient:hover { opacity: 0.9; }
-    .modal-backdrop { background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s, color 0.3s; }
+    .brand-font { font-family: 'Oleo Script', cursive; letter-spacing: 0.5px; }
+    .brand-gradient { 
+      background: linear-gradient(135deg, #00d2ff 0%, #ff007f 55%, #ffaa00 100%); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+    }
+    .btn-gradient { 
+      background: linear-gradient(110deg, #00b4db 0%, #a855f7 50%, #f43f5e 100%); 
+      box-shadow: 0 4px 15px -3px rgba(244, 63, 94, 0.3);
+    }
+    .btn-gradient:hover { opacity: 0.95; transform: translateY(-1px); }
+    .modal-backdrop { background-color: rgba(0, 0, 0, 0.75); backdrop-filter: blur(5px); }
   </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-900 dark:bg-[#0b0f17] dark:text-[#f3f4f6]">
+<body class="min-h-screen flex flex-col justify-between bg-slate-50 text-slate-900 dark:bg-[#090d14] dark:text-[#f3f4f6]">
 
   <!-- Navbar -->
-  <header class="border-b border-slate-200 dark:border-gray-800 bg-white/90 dark:bg-[#0b0f17]/90 sticky top-0 z-40 backdrop-blur">
+  <header class="border-b border-slate-200 dark:border-gray-800/80 bg-white/90 dark:bg-[#090d14]/90 sticky top-0 z-40 backdrop-blur-md">
     <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <!-- Brand Logo + Name -->
-      <a href="#" class="flex items-center space-x-2.5">
-        <img src="logo.png" alt="SaveBucks Logo" class="w-9 h-9 object-contain hover:scale-105 transition" />
-        <span class="text-2xl font-black italic tracking-wider brand-gradient">SaveBucks</span>
+      <!-- Brand Logo + Name in Script Font -->
+      <a href="#" class="flex items-center space-x-2.5 group">
+        <img src="logo.png" alt="SaveBucks Logo" class="w-9 h-9 object-contain group-hover:scale-105 transition-transform" />
+        <span class="text-3xl brand-font brand-gradient pt-1">SaveBucks</span>
       </a>
       
-      <nav class="hidden md:flex items-center space-x-6 text-sm text-slate-600 dark:text-gray-300">
+      <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-gray-300">
         <a href="#search" class="hover:text-cyan-500 transition">Search Apps</a>
         <a href="#services" class="hover:text-cyan-500 transition">Features</a>
         <a href="#dashboard" class="hover:text-cyan-500 transition">Dashboard</a>
         <a href="#pricing" class="hover:text-cyan-500 transition">Pricing</a>
         <a href="#reviews" class="hover:text-cyan-500 transition">Reviews</a>
         <a href="#faq" class="hover:text-cyan-500 transition">FAQ</a>
-        <button onclick="openModal('manualModal')" class="hover:text-cyan-500 transition text-cyan-600 dark:text-cyan-400 font-medium">User Manual</button>
+        <button onclick="openModal('manualModal')" class="hover:text-cyan-500 transition text-cyan-600 dark:text-cyan-400 font-semibold">User Manual</button>
       </nav>
 
       <div class="flex items-center space-x-3">
@@ -69,63 +89,63 @@
   <!-- Hero Section -->
   <main class="max-w-5xl mx-auto px-4 py-12 flex-grow space-y-16">
     <div class="text-center space-y-5">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs bg-slate-200 dark:bg-gray-800 text-slate-700 dark:text-gray-300 border border-slate-300 dark:border-gray-700">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full text-xs font-medium bg-slate-200/80 dark:bg-gray-800/80 text-slate-700 dark:text-gray-300 border border-slate-300 dark:border-gray-700">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Live tracking for 64+ apps • US users waste $1000/year
       </div>
-      <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-tight">
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
         Stop Paying for <br/>
-        <span class="brand-gradient">Subscriptions You Forgot</span>
+        <span class="brand-gradient font-black">Subscriptions You Forgot</span>
       </h1>
       <p class="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
         Track 64+ apps like Claude Pro, ReelShort, MadMuscle $29.99/week ($120/mo). Save $500+/year. Find weekly traps, duplicate tools, and trial scams before they charge.
       </p>
 
       <div class="flex flex-wrap justify-center gap-4 pt-2">
-        <a href="#dashboard" class="btn-gradient text-white font-semibold text-sm px-6 py-3 rounded-full shadow-lg">Start Tracking Free — 5 Subs Free</a>
-        <a href="#why-built" class="bg-slate-200 dark:bg-gray-800 hover:bg-slate-300 dark:hover:bg-gray-750 text-slate-800 dark:text-gray-200 text-sm font-semibold px-6 py-3 rounded-full border border-slate-300 dark:border-gray-700 transition">See How It Works</a>
+        <a href="#dashboard" class="btn-gradient text-white font-semibold text-sm px-6 py-3 rounded-full shadow-lg transition">Start Tracking Free — 5 Subs Free</a>
+        <a href="#why-built" class="bg-slate-200 dark:bg-gray-800 hover:bg-slate-300 dark:hover:bg-gray-700 text-slate-800 dark:text-gray-200 text-sm font-semibold px-6 py-3 rounded-full border border-slate-300 dark:border-gray-700 transition">See How It Works</a>
       </div>
 
       <!-- Quick Metrics -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-8 max-w-3xl mx-auto text-center">
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-3xl shadow-sm">
           <div class="text-3xl font-extrabold text-slate-900 dark:text-white">$1200+</div>
-          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1">avg saved / yr</div>
+          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1 font-medium">avg saved / yr</div>
         </div>
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-3xl shadow-sm">
           <div class="text-3xl font-extrabold text-slate-900 dark:text-white">64+</div>
-          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1">apps tracked</div>
+          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1 font-medium">apps tracked</div>
         </div>
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-5 rounded-3xl shadow-sm">
           <div class="text-3xl font-extrabold text-slate-900 dark:text-white">5000+</div>
-          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1">users</div>
+          <div class="text-xs text-slate-500 dark:text-gray-400 mt-1 font-medium">active users</div>
         </div>
       </div>
     </div>
 
     <!-- Universal Search Section -->
     <section id="search" class="max-w-3xl mx-auto">
-      <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl border border-slate-200 dark:border-gray-800 shadow-xl relative">
+      <div class="bg-white dark:bg-[#111827] p-6 rounded-3xl border border-slate-200 dark:border-gray-800 shadow-xl relative">
         <div class="flex items-center justify-between mb-3">
           <label class="text-xs uppercase font-bold text-slate-500 dark:text-gray-400 tracking-wider">Universal App & Subscription Lookup</label>
-          <span class="text-xs text-cyan-600 dark:text-cyan-400 font-medium">Multi-Platform Cancel Links</span>
+          <span class="text-xs text-cyan-600 dark:text-cyan-400 font-semibold">Multi-Platform Cancel Links</span>
         </div>
         <div class="relative">
           <input 
             type="text" 
             id="searchInput" 
             placeholder="Type any app (Netflix, Claude, ReelShort, Prime, Spotify, MadMuscle)..."
-            class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-xl px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition"
+            class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-2xl px-4 py-3.5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition"
             oninput="handleSearch()"
           />
-          <button onclick="handleSearch()" class="absolute right-2 top-2 btn-gradient text-white text-xs font-semibold px-4 py-2 rounded-lg">Check</button>
+          <button onclick="handleSearch()" class="absolute right-2 top-2 btn-gradient text-white text-xs font-semibold px-4 py-2 rounded-xl">Check</button>
         </div>
 
         <!-- Autocomplete Suggestions -->
-        <div id="suggestions" class="hidden absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 rounded-xl shadow-2xl overflow-hidden z-50 max-h-56 overflow-y-auto"></div>
+        <div id="suggestions" class="hidden absolute left-0 right-0 top-full mt-2 bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 rounded-2xl shadow-2xl overflow-hidden z-50 max-h-56 overflow-y-auto"></div>
       </div>
 
       <!-- Live Search Detail Card -->
-      <div id="searchResult" class="hidden mt-6 bg-white dark:bg-[#111827] p-6 rounded-2xl border border-cyan-500/30 dark:border-cyan-800/40 shadow-lg"></div>
+      <div id="searchResult" class="hidden mt-6 bg-white dark:bg-[#111827] p-6 rounded-3xl border border-cyan-500/30 dark:border-cyan-800/40 shadow-lg"></div>
     </section>
 
     <!-- Interactive User Dashboard -->
@@ -137,9 +157,9 @@
         </div>
         <!-- Distinct Plan Buttons -->
         <div class="flex flex-wrap items-center gap-2">
-          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/2adba7db-2b70-476a-b427-72944bad469c" target="_blank" class="btn-gradient text-white text-xs font-semibold px-3.5 py-2 rounded-lg shadow inline-block">Monthly $5/mo</a>
-          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/62d5af07-362f-475a-848a-d2b864881d74" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold inline-block shadow">Yearly $29/yr</a>
-          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/b91938ad-6b37-4380-a0b2-964b781e91ff" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3.5 py-2 rounded-lg font-semibold inline-block shadow">Lifetime $59</a>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/2adba7db-2b70-476a-b427-72944bad469c" target="_blank" class="btn-gradient text-white text-xs font-semibold px-3.5 py-2 rounded-xl shadow inline-block">Monthly $5/mo</a>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/62d5af07-362f-475a-848a-d2b864881d74" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white text-xs px-3.5 py-2 rounded-xl font-semibold inline-block shadow">Yearly $29/yr</a>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/b91938ad-6b37-4380-a0b2-964b781e91ff" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3.5 py-2 rounded-xl font-semibold inline-block shadow">Lifetime $59</a>
         </div>
       </div>
 
@@ -147,46 +167,46 @@
       <div class="mt-6">
         <div class="flex justify-between items-center text-xs font-semibold mb-2">
           <span id="subsCountLabel" class="text-slate-600 dark:text-gray-400">0/5 subs • Free</span>
-          <span class="text-rose-500 dark:text-rose-400">Weekly trap warning enabled</span>
+          <span class="text-rose-500 dark:text-rose-400 font-bold">Weekly trap warning enabled</span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
           <div class="md:col-span-6">
-            <input type="text" id="newAppName" placeholder="Netflix, Claude Pro, ReelShort..." class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
+            <input type="text" id="newAppName" placeholder="Netflix, Claude Pro, ReelShort..." class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-2xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
           </div>
           <div class="md:col-span-2">
-            <input type="number" step="0.01" id="newAppCost" placeholder="9.99" class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
+            <input type="number" step="0.01" id="newAppCost" placeholder="9.99" class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-2xl px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:outline-none focus:border-cyan-500" />
           </div>
           <div class="md:col-span-2">
-            <select id="newAppCycle" class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-xl px-3 py-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500">
+            <select id="newAppCycle" class="w-full bg-slate-50 dark:bg-gray-900 border border-slate-300 dark:border-gray-700 rounded-2xl px-3 py-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-cyan-500">
               <option value="monthly">Monthly</option>
               <option value="weekly">Weekly</option>
               <option value="yearly">Yearly</option>
             </select>
           </div>
           <div class="md:col-span-2">
-            <button onclick="addSubscription()" id="addBtn" class="w-full h-full btn-gradient text-white text-xs font-bold py-3 rounded-xl shadow">+ Add (0/5)</button>
+            <button onclick="addSubscription()" id="addBtn" class="w-full h-full btn-gradient text-white text-xs font-bold py-3 rounded-2xl shadow">+ Add (0/5)</button>
           </div>
         </div>
-        <div class="flex flex-wrap items-center justify-between text-[11px] text-slate-500 dark:text-gray-400 mt-2 gap-2">
+        <div class="flex flex-wrap items-center justify-between text-[11px] text-slate-500 dark:text-gray-400 mt-2 gap-2 font-medium">
           <span>Price entered • Weekly trap auto-converts (x4.33 to monthly)</span>
           <div class="space-x-3">
-            <button onclick="triggerProFeature('Export to CSV')" class="text-cyan-600 dark:text-cyan-400 font-medium hover:underline">Export CSV 🔒 Pro</button>
-            <button onclick="triggerProFeature('Trial Alerts')" class="text-purple-600 dark:text-purple-400 font-medium hover:underline">Trial Reminders 🔒 Pro</button>
+            <button onclick="triggerProFeature('Export to CSV')" class="text-cyan-600 dark:text-cyan-400 font-bold hover:underline">Export CSV 🔒 Pro</button>
+            <button onclick="triggerProFeature('Trial Alerts')" class="text-purple-600 dark:text-purple-400 font-bold hover:underline">Trial Reminders 🔒 Pro</button>
           </div>
         </div>
       </div>
 
       <!-- Realtime Burn Metrics -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-        <div class="bg-slate-900 text-white dark:bg-white dark:text-black p-5 rounded-2xl shadow">
+        <div class="bg-slate-900 text-white dark:bg-white dark:text-black p-5 rounded-3xl shadow">
           <div class="text-xs uppercase font-extrabold tracking-wider text-slate-400 dark:text-gray-600">Monthly Burn</div>
           <div class="text-3xl font-black mt-2" id="burnMonthly">$0</div>
         </div>
-        <div class="bg-slate-100 dark:bg-gray-900/90 p-5 rounded-2xl border border-slate-200 dark:border-gray-800">
+        <div class="bg-slate-100 dark:bg-gray-900/90 p-5 rounded-3xl border border-slate-200 dark:border-gray-800">
           <div class="text-xs uppercase font-semibold text-slate-500 dark:text-gray-400">Yearly Waste</div>
           <div class="text-3xl font-extrabold text-slate-900 dark:text-white mt-2" id="burnYearly">$0</div>
         </div>
-        <div class="bg-amber-50 dark:bg-[#1c1514] p-5 rounded-2xl border border-amber-200 dark:border-amber-900/40">
+        <div class="bg-amber-50 dark:bg-[#1c1514] p-5 rounded-3xl border border-amber-200 dark:border-amber-900/40">
           <div class="text-xs uppercase font-semibold text-amber-600 dark:text-amber-500">Weekly Trap $</div>
           <div class="text-3xl font-extrabold text-amber-600 dark:text-amber-400 mt-2" id="burnWeeklyTrap">$0</div>
         </div>
@@ -201,27 +221,27 @@
     <!-- Services / Features Section -->
     <section id="services">
       <div class="text-center max-w-xl mx-auto mb-10">
-        <h2 class="text-3xl font-black text-slate-900 dark:text-white">Everything You Need to Save</h2>
+        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Everything You Need to Save</h2>
         <p class="text-xs text-slate-500 dark:text-gray-400 mt-2">Built for weekly-trap App Store pricing that hides true monthly cost.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl">
-          <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">A</span>
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl">
+          <span class="w-8 h-8 rounded-xl btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">A</span>
           <h3 class="text-lg font-bold text-slate-900 dark:text-white">Auto-Detect Waste</h3>
           <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Scans your weekly traps and duplicate tools in seconds.</p>
         </div>
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl">
-          <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">1</span>
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl">
+          <span class="w-8 h-8 rounded-xl btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">1</span>
           <h3 class="text-lg font-bold text-slate-900 dark:text-white">1-Click Cancel Guides</h3>
           <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Direct deep links for Web, Apple ID, and Google Play Store.</p>
         </div>
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl">
-          <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">S</span>
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl">
+          <span class="w-8 h-8 rounded-xl btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">S</span>
           <h3 class="text-lg font-bold text-slate-900 dark:text-white">Switch & Save</h3>
           <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Cheaper alternatives that do the same job at half the price.</p>
         </div>
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl">
-          <span class="w-8 h-8 rounded-lg btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">T</span>
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl">
+          <span class="w-8 h-8 rounded-xl btn-gradient flex items-center justify-center text-xs font-bold text-white mb-4">T</span>
           <h3 class="text-lg font-bold text-slate-900 dark:text-white">Trial Alerts</h3>
           <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Never get charged after a free trial ends.</p>
         </div>
@@ -242,17 +262,17 @@
 
     <!-- Pricing Section -->
     <section id="pricing" class="text-center pt-8">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-slate-200 dark:bg-gray-800 text-slate-700 dark:text-gray-300 border border-slate-300 dark:border-gray-700 mb-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs bg-slate-200 dark:bg-gray-800 text-slate-700 dark:text-gray-300 border border-slate-300 dark:border-gray-700 mb-3 font-medium">
         Simple pricing • No hidden fees • LemonSqueezy secure
       </div>
-      <h2 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white">Pay once, save all year</h2>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Pay once, save all year</h2>
       <p class="text-slate-500 dark:text-gray-400 text-xs md:text-sm mt-2">Free = 5 subs forever. Pro unlocks unlimited tracking, trial alerts & export.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-left">
         <!-- Monthly Plan -->
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl flex flex-col justify-between">
           <div>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-gray-800 text-slate-700 dark:text-gray-300">Flexible</span>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-gray-800 text-slate-700 dark:text-gray-300">Flexible</span>
             <div class="text-3xl font-black mt-4">$5<span class="text-xs font-normal text-slate-400 dark:text-gray-400">/month</span></div>
             <p class="text-xs text-slate-400 dark:text-gray-400 mt-1">Cancel anytime via LemonSqueezy.</p>
             <ul class="text-xs text-slate-600 dark:text-gray-300 space-y-2 mt-5">
@@ -262,14 +282,14 @@
               <li>✓ Trial reminders & export</li>
             </ul>
           </div>
-          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/2adba7db-2b70-476a-b427-72944bad469c" target="_blank" class="w-full mt-6 py-2.5 rounded-xl border border-slate-300 dark:border-gray-700 bg-slate-100 dark:bg-gray-900 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-gray-800 transition text-center block">Subscribe $5/mo</a>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/2adba7db-2b70-476a-b427-72944bad469c" target="_blank" class="w-full mt-6 py-2.5 rounded-2xl border border-slate-300 dark:border-gray-700 bg-slate-100 dark:bg-gray-900 text-xs font-bold hover:bg-slate-200 dark:hover:bg-gray-800 transition text-center block">Subscribe $5/mo</a>
         </div>
 
         <!-- Yearly Plan -->
-        <div class="bg-white dark:bg-[#111827] border-2 border-purple-500 p-6 rounded-2xl relative flex flex-col justify-between shadow-xl shadow-purple-500/10">
-          <span class="absolute -top-3 right-4 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-600 text-white uppercase tracking-wider">Popular • Save 51%</span>
+        <div class="bg-white dark:bg-[#111827] border-2 border-purple-500 p-6 rounded-3xl relative flex flex-col justify-between shadow-xl shadow-purple-500/10">
+          <span class="absolute -top-3 right-4 text-[10px] font-bold px-3 py-0.5 rounded-full bg-purple-600 text-white uppercase tracking-wider">Popular • Save 51%</span>
           <div>
-            <div class="text-xs text-purple-600 dark:text-purple-400 font-semibold">Yearly</div>
+            <div class="text-xs text-purple-600 dark:text-purple-400 font-bold">Yearly</div>
             <div class="text-3xl font-black mt-2">$29<span class="text-xs font-normal text-slate-400 dark:text-gray-400">/year</span></div>
             <p class="text-xs text-slate-400 dark:text-gray-400 mt-1">$2.41/mo billed yearly. Popular choice.</p>
             <ul class="text-xs text-slate-600 dark:text-gray-300 space-y-2 mt-5">
@@ -279,13 +299,13 @@
               <li>✓ Early new apps & guides</li>
             </ul>
           </div>
-          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/62d5af07-362f-475a-848a-d2b864881d74" target="_blank" class="w-full mt-6 py-2.5 rounded-xl btn-gradient text-white text-xs font-bold text-center block">Get Yearly $29/yr</a>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/62d5af07-362f-475a-848a-d2b864881d74" target="_blank" class="w-full mt-6 py-2.5 rounded-2xl btn-gradient text-white text-xs font-bold text-center block shadow-md">Get Yearly $29/yr</a>
         </div>
 
         <!-- Lifetime Plan -->
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl flex flex-col justify-between">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl flex flex-col justify-between">
           <div>
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400">BEST VALUE</span>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-gray-800 text-emerald-600 dark:text-emerald-400">BEST VALUE</span>
             <div class="text-3xl font-black mt-4">$59<span class="text-xs font-normal text-slate-400 dark:text-gray-400"> one-time</span></div>
             <p class="text-xs text-slate-400 dark:text-gray-400 mt-1">Pay once, use forever. Save $200+.</p>
             <ul class="text-xs text-slate-600 dark:text-gray-300 space-y-2 mt-5">
@@ -295,7 +315,7 @@
               <li>✓ Best Value - Save $200+ long term</li>
             </ul>
           </div>
-          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/b91938ad-6b37-4380-a0b2-964b781e91ff" target="_blank" class="w-full mt-6 py-2.5 rounded-xl border border-slate-300 dark:border-gray-700 bg-slate-100 dark:bg-gray-900 text-xs font-semibold hover:bg-slate-200 dark:hover:bg-gray-800 transition text-center block">Buy Lifetime $59</a>
+          <a href="https://savebuck.lemonsqueezy.com/checkout/buy/b91938ad-6b37-4380-a0b2-964b781e91ff" target="_blank" class="w-full mt-6 py-2.5 rounded-2xl border border-slate-300 dark:border-gray-700 bg-slate-100 dark:bg-gray-900 text-xs font-bold hover:bg-slate-200 dark:hover:bg-gray-800 transition text-center block">Buy Lifetime $59</a>
         </div>
       </div>
     </section>
@@ -308,7 +328,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl shadow-sm">
           <div class="flex justify-between items-center mb-3">
             <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
             <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Saved $780/yr</span>
@@ -320,7 +340,7 @@
           <div class="text-[10px] text-slate-400">Verified User • California</div>
         </div>
 
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl shadow-sm">
           <div class="flex justify-between items-center mb-3">
             <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
             <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Saved $1,450/yr</span>
@@ -332,7 +352,7 @@
           <div class="text-[10px] text-slate-400">Verified User • Texas</div>
         </div>
 
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl shadow-sm">
           <div class="flex justify-between items-center mb-3">
             <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
             <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Saved $420/yr</span>
@@ -344,7 +364,7 @@
           <div class="text-[10px] text-slate-400">Verified User • New York</div>
         </div>
 
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl shadow-sm">
           <div class="flex justify-between items-center mb-3">
             <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
             <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Saved $640/yr</span>
@@ -356,7 +376,7 @@
           <div class="text-[10px] text-slate-400">Verified User • Florida</div>
         </div>
 
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl shadow-sm">
           <div class="flex justify-between items-center mb-3">
             <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
             <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Saved $360/yr</span>
@@ -368,7 +388,7 @@
           <div class="text-[10px] text-slate-400">Designer • Toronto</div>
         </div>
 
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-2xl shadow-sm">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 p-6 rounded-3xl shadow-sm">
           <div class="flex justify-between items-center mb-3">
             <span class="text-amber-400 text-sm tracking-wider">★★★★★</span>
             <span class="bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-400 px-2.5 py-0.5 rounded-full text-[11px] font-semibold">Saved $520/yr</span>
@@ -389,7 +409,7 @@
       
       <div class="space-y-3">
         <!-- Q1 -->
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl overflow-hidden">
           <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center text-slate-900 dark:text-white">
             <span>How does SaveBucks work?</span>
             <span id="faq-icon-1" class="text-cyan-500 font-bold text-base">+</span>
@@ -400,7 +420,7 @@
         </div>
 
         <!-- Q2 -->
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl overflow-hidden">
           <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center text-slate-900 dark:text-white">
             <span>Is my personal and financial data safe?</span>
             <span id="faq-icon-2" class="text-cyan-500 font-bold text-base">+</span>
@@ -411,7 +431,7 @@
         </div>
 
         <!-- Q3 -->
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl overflow-hidden">
           <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center text-slate-900 dark:text-white">
             <span>Which 64+ apps and platforms are supported?</span>
             <span id="faq-icon-3" class="text-cyan-500 font-bold text-base">+</span>
@@ -422,7 +442,7 @@
         </div>
 
         <!-- Q4 -->
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl overflow-hidden">
           <button onclick="toggleFaq(4)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center text-slate-900 dark:text-white">
             <span>How to cancel MadMuscle, ReelShort, or DramaBox?</span>
             <span id="faq-icon-4" class="text-cyan-500 font-bold text-base">+</span>
@@ -433,7 +453,7 @@
         </div>
 
         <!-- Q5 -->
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl overflow-hidden">
           <button onclick="toggleFaq(5)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center text-slate-900 dark:text-white">
             <span>What is the free limit vs Pro plan?</span>
             <span id="faq-icon-5" class="text-cyan-500 font-bold text-base">+</span>
@@ -444,7 +464,7 @@
         </div>
 
         <!-- Q6 -->
-        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-xl overflow-hidden">
+        <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-gray-800 rounded-2xl overflow-hidden">
           <button onclick="toggleFaq(6)" class="w-full p-4 text-left font-semibold text-sm flex justify-between items-center text-slate-900 dark:text-white">
             <span>Support and refund policy?</span>
             <span id="faq-icon-6" class="text-cyan-500 font-bold text-base">+</span>
@@ -458,13 +478,13 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-200 dark:border-gray-800 py-10 bg-white dark:bg-[#0b0f17] text-xs text-slate-500 dark:text-gray-500">
+  <footer class="border-t border-slate-200 dark:border-gray-800 py-10 bg-white dark:bg-[#090d14] text-xs text-slate-500 dark:text-gray-500">
     <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
-        <!-- Footer Logo + Brand -->
+        <!-- Footer Logo + Brand in Script -->
         <div class="flex items-center space-x-2">
           <img src="logo.png" alt="SaveBucks Logo" class="w-7 h-7 object-contain" />
-          <span class="text-xl font-black italic tracking-wider brand-gradient">SaveBucks</span>
+          <span class="text-2xl brand-font brand-gradient pt-1">SaveBucks</span>
         </div>
         <p class="mt-2 text-slate-500 dark:text-gray-400">Stop paying for forgotten subscriptions and weekly traps.</p>
       </div>
@@ -498,21 +518,21 @@
 
   <!-- MODAL: Cancel Options (Web / iOS / Android) -->
   <div id="cancelModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative">
+    <div class="bg-white dark:bg-[#111827] p-6 rounded-3xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative">
       <button onclick="closeModal('cancelModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">✕</button>
       <h3 class="text-xl font-bold text-slate-900 dark:text-white" id="modalAppName">Cancel Subscription</h3>
       <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Choose where you purchased this subscription to cancel instantly:</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mt-5">
-        <a id="appleCancelLink" href="https://apps.apple.com/account/subscriptions" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-center transition">
+        <a id="appleCancelLink" href="https://apps.apple.com/account/subscriptions" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-2xl text-center transition">
           <div class="text-xs font-bold text-slate-900 dark:text-white">Apple iOS</div>
           <div class="text-[10px] text-slate-500 dark:text-gray-400 mt-0.5">App Store ↗</div>
         </a>
-        <a id="playCancelLink" href="https://play.google.com/store/account/subscriptions" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-center transition">
+        <a id="playCancelLink" href="https://play.google.com/store/account/subscriptions" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-2xl text-center transition">
           <div class="text-xs font-bold text-slate-900 dark:text-white">Google Play</div>
           <div class="text-[10px] text-slate-500 dark:text-gray-400 mt-0.5">Android ↗</div>
         </a>
-        <a id="webCancelLink" href="#" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-xl text-center transition">
+        <a id="webCancelLink" href="#" target="_blank" class="p-3 bg-slate-50 dark:bg-gray-900 hover:bg-slate-100 dark:hover:bg-gray-800 border border-slate-200 dark:border-gray-700 rounded-2xl text-center transition">
           <div class="text-xs font-bold text-slate-900 dark:text-white">Direct Website</div>
           <div class="text-[10px] text-cyan-600 dark:text-cyan-400 mt-0.5">Web Billing ↗</div>
         </a>
@@ -520,14 +540,14 @@
 
       <div class="mt-5">
         <div class="text-xs uppercase font-bold text-slate-500 dark:text-gray-400 mb-1">Step-by-Step Instructions</div>
-        <pre id="modalSteps" class="bg-slate-50 dark:bg-gray-900/90 p-4 rounded-xl text-xs text-slate-700 dark:text-gray-300 whitespace-pre-line border border-slate-200 dark:border-gray-800 font-sans"></pre>
+        <pre id="modalSteps" class="bg-slate-50 dark:bg-gray-900/90 p-4 rounded-2xl text-xs text-slate-700 dark:text-gray-300 whitespace-pre-line border border-slate-200 dark:border-gray-800 font-sans"></pre>
       </div>
     </div>
   </div>
 
   <!-- MODAL: User Manual -->
   <div id="manualModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+    <div class="bg-white dark:bg-[#111827] p-6 rounded-3xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
       <button onclick="closeModal('manualModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">✕</button>
       <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">SaveBucks — User Manual</h3>
       <div class="text-xs text-slate-600 dark:text-gray-300 space-y-3 leading-relaxed">
@@ -540,7 +560,7 @@
 
   <!-- MODAL: Terms of Service -->
   <div id="termsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+    <div class="bg-white dark:bg-[#111827] p-6 rounded-3xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
       <button onclick="closeModal('termsModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">✕</button>
       <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Terms of Service</h3>
       <div class="text-xs text-slate-600 dark:text-gray-300 space-y-2 leading-relaxed">
@@ -552,7 +572,7 @@
 
   <!-- MODAL: Privacy Policy -->
   <div id="privacyModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 modal-backdrop">
-    <div class="bg-white dark:bg-[#111827] p-6 rounded-2xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+    <div class="bg-white dark:bg-[#111827] p-6 rounded-3xl max-w-lg w-full border border-slate-200 dark:border-gray-700 shadow-2xl relative max-h-[85vh] overflow-y-auto">
       <button onclick="closeModal('privacyModal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white text-lg">✕</button>
       <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Privacy Policy</h3>
       <div class="text-xs text-slate-600 dark:text-gray-300 space-y-2 leading-relaxed">
@@ -699,13 +719,13 @@
         drop.innerHTML = matches.map(app => `
           <div onclick="selectApp('${app.name}')" class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-gray-800 cursor-pointer border-b border-slate-100 dark:border-gray-800 last:border-none flex justify-between items-center text-sm">
             <span class="font-semibold text-slate-900 dark:text-white">${app.name}</span>
-            <span class="text-xs text-cyan-600 dark:text-cyan-400">${app.category}</span>
+            <span class="text-xs text-cyan-600 dark:text-cyan-400 font-medium">${app.category}</span>
           </div>
         `).join('');
         drop.classList.remove('hidden');
       } else {
         drop.innerHTML = `
-          <div onclick="selectCustomApp('${raw}')" class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-gray-800 cursor-pointer text-xs text-rose-500">
+          <div onclick="selectCustomApp('${raw}')" class="px-4 py-3 hover:bg-slate-100 dark:hover:bg-gray-800 cursor-pointer text-xs text-rose-500 font-medium">
             Show universal multi-platform cancel options for "${raw}" →
           </div>
         `;
@@ -748,18 +768,18 @@
           <div>
             <div class="flex items-center gap-2">
               <h3 class="text-xl font-extrabold text-slate-900 dark:text-white">${app.name}</h3>
-              <span class="text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-gray-800 text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-gray-700 font-mono">${app.category}</span>
+              <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-gray-800 text-cyan-600 dark:text-cyan-400 border border-slate-200 dark:border-gray-700 font-mono font-medium">${app.category}</span>
             </div>
             <div class="text-xs text-slate-500 dark:text-gray-400 mt-1">Available Plans: <span class="text-slate-900 dark:text-white font-medium">${app.plans}</span></div>
           </div>
           <div class="flex items-center gap-2">
-            <button onclick='openCancelModal(${JSON.stringify(app)})' class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition">Cancel Options ↗</button>
-            <button onclick="prefillDashboard('${app.name}')" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-gray-800 hover:bg-slate-200 dark:hover:bg-gray-700 text-xs text-slate-700 dark:text-gray-300 font-medium border border-slate-300 dark:border-gray-700">+ Add to Dashboard</button>
+            <button onclick='openCancelModal(${JSON.stringify(app)})' class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition shadow-sm">Cancel Options ↗</button>
+            <button onclick="prefillDashboard('${app.name}')" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-gray-800 hover:bg-slate-200 dark:hover:bg-gray-700 text-xs text-slate-700 dark:text-gray-300 font-semibold border border-slate-300 dark:border-gray-700">+ Add to Dashboard</button>
           </div>
         </div>
         <div class="mt-4">
           <div class="text-xs uppercase font-bold text-slate-500 dark:text-gray-400 mb-1">Cancellation Instructions:</div>
-          <pre class="bg-slate-50 dark:bg-gray-900/90 p-4 rounded-xl text-xs text-slate-700 dark:text-gray-300 whitespace-pre-line border border-slate-200 dark:border-gray-800 font-sans">${app.steps}</pre>
+          <pre class="bg-slate-50 dark:bg-gray-900/90 p-4 rounded-2xl text-xs text-slate-700 dark:text-gray-300 whitespace-pre-line border border-slate-200 dark:border-gray-800 font-sans"></pre>
         </div>
       `;
     }
@@ -866,7 +886,7 @@
 
       if (count === 0) {
         list.innerHTML = `
-          <div class="text-center py-8 text-slate-400 dark:text-gray-500 text-sm border border-dashed border-slate-300 dark:border-gray-800 rounded-2xl">
+          <div class="text-center py-8 text-slate-400 dark:text-gray-500 text-sm border border-dashed border-slate-300 dark:border-gray-800 rounded-3xl">
             No subscriptions added yet. Add an app above to calculate your burn!
           </div>
         `;
@@ -896,7 +916,7 @@
         return `
           <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-gray-900/80 rounded-2xl border border-slate-200 dark:border-gray-800">
             <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-gray-800 text-cyan-600 dark:text-cyan-400 font-bold flex items-center justify-center text-xs">
+              <div class="w-9 h-9 rounded-full bg-slate-200 dark:bg-gray-800 text-cyan-600 dark:text-cyan-400 font-bold flex items-center justify-center text-xs">
                 ${sub.name.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -907,8 +927,8 @@
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="displayAppDetails({name: '${sub.name}', category: 'Subscribed Tool', plans: '$${sub.cost}', steps: 'Open settings of ${sub.name} to cancel.'})" class="text-xs bg-slate-200 dark:bg-gray-800 hover:bg-slate-300 dark:hover:bg-gray-750 text-slate-800 dark:text-gray-200 px-3 py-1.5 rounded-lg border border-slate-300 dark:border-gray-700 font-medium">Cancel Guide</button>
-              <button onclick="removeSubscription(${sub.id})" class="text-xs text-rose-500 hover:text-rose-400 px-2 py-1">Remove</button>
+              <button onclick="displayAppDetails({name: '${sub.name}', category: 'Subscribed Tool', plans: '$${sub.cost}', steps: 'Open settings of ${sub.name} to cancel.'})" class="text-xs bg-slate-200 dark:bg-gray-800 hover:bg-slate-300 dark:hover:bg-gray-750 text-slate-800 dark:text-gray-200 px-3.5 py-1.5 rounded-xl border border-slate-300 dark:border-gray-700 font-medium">Cancel Guide</button>
+              <button onclick="removeSubscription(${sub.id})" class="text-xs text-rose-500 hover:text-rose-400 px-2 py-1 font-medium">Remove</button>
             </div>
           </div>
         `;
